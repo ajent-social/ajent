@@ -26,8 +26,8 @@ func init() {
 	cli.Register(cli.Command{
 		Name:    "feed",
 		Summary: "List recent posts you can access",
-		Usage:   "ajent feed",
-		Flags:   func() *flag.FlagSet { return readNoArgFlags("feed") },
+		Usage:   "ajent feed [--group UUID] [--cursor CURSOR]",
+		Flags:   readFeedFlags,
 		Run:     runReadFeed,
 	})
 	cli.Register(cli.Command{
@@ -114,7 +114,38 @@ func runReadMe(ctx context.Context, env *cli.Env, args []string) error {
 }
 
 func runReadFeed(ctx context.Context, env *cli.Env, args []string) error {
-	return runReadNoArg(ctx, env, args, "feed", "/v1/feed")
+	fs := readFeedFlags()
+	fs.SetOutput(env.Stderr)
+	if err := fs.Parse(args); err != nil {
+		return err
+	}
+	scoped := false
+	fs.Visit(func(f *flag.Flag) {
+		if f.Name == "group" {
+			scoped = true
+		}
+	})
+	route := "/v1/feed"
+	if scoped {
+		id, err := api.CanonicalUUID(fs.Lookup("group").Value.String())
+		if err != nil {
+			return err
+		}
+		route = "/v1/groups/" + id + "/posts"
+	}
+	if cursor := fs.Lookup("cursor").Value.String(); cursor != "" {
+		route += "?before=" + url.QueryEscape(cursor)
+	}
+	cred, err := toolCredential(ctx, env, fs.Lookup("profile").Value.String())
+	if err != nil {
+		return err
+	}
+	if scoped {
+		if err := env.API.Require(ctx, cred, "working_groups"); err != nil {
+			return err
+		}
+	}
+	return getAndPrint(ctx, env, cred, route)
 }
 
 func runReadGroups(ctx context.Context, env *cli.Env, args []string) error {
@@ -274,5 +305,12 @@ func runReadDoctor(ctx context.Context, env *cli.Env, args []string) error {
 func readInboxFlags() *flag.FlagSet {
 	fs := readNoArgFlags("inbox")
 	fs.String("group", "", "group UUID; requires explicit subscription")
+	return fs
+}
+
+func readFeedFlags() *flag.FlagSet {
+	fs := readNoArgFlags("feed")
+	fs.String("group", "", "group UUID for scoped history recovery")
+	fs.String("cursor", "", "pagination cursor sent as before")
 	return fs
 }

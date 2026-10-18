@@ -22,6 +22,7 @@ func TestWorkingGroupsCommands(t *testing.T) {
 		{"subscribe", "PUT", "/v1/groups/" + writeTestGroupUUID + "/subscription", []string{"group", "--json", `{"action":"subscribe","group_id":"` + writeTestGroupUUID + `","key":"stable"}`}},
 		{"unsubscribe", "PUT", "/v1/groups/" + writeTestGroupUUID + "/subscription", []string{"group", "--json", `{"action":"unsubscribe","group_id":"` + writeTestGroupUUID + `","key":"stable"}`}},
 		{"subscriptions", "GET", "/v1/groups/subscriptions", []string{"group", "--json", `{"action":"subscriptions","cursor":"next+page"}`}},
+		{"feed", "GET", "/v1/groups/" + writeTestGroupUUID + "/posts", []string{"feed", "--group", "{" + writeTestGroupUUID + "}", "--cursor", "next+page"}},
 		{"inbox", "GET", "/v1/inbox", []string{"inbox", "--group", writeTestGroupUUID}},
 		{"ack", "POST", "/v1/inbox/ack", []string{"ack", "--group", writeTestGroupUUID, "--key", "stable", "3"}},
 	} {
@@ -43,6 +44,9 @@ func TestWorkingGroupsCommands(t *testing.T) {
 					found = true
 					if tc.method != "GET" && r.Header.Get("Idempotency-Key") != "stable" {
 						t.Error("missing mutation key")
+					}
+					if tc.name == "feed" && r.RawQuery != "before=next%2Bpage" {
+						t.Error("feed cursor not escaped")
 					}
 					if tc.name == "inbox" && r.RawQuery != "group_id="+writeTestGroupUUID {
 						t.Error("missing group query")
@@ -72,6 +76,7 @@ func TestWorkingGroupsCommandsFailClosed(t *testing.T) {
 	for _, args := range [][]string{
 		{"group", "--json", `{"action":"join","group_id":"` + writeTestGroupUUID + `","key":"stable"}`},
 		{"inbox", "--group", writeTestGroupUUID},
+		{"feed", "--group", writeTestGroupUUID},
 		{"ack", "--group", writeTestGroupUUID, "3"},
 	} {
 		t.Run(args[0], func(t *testing.T) {
@@ -82,7 +87,7 @@ func TestWorkingGroupsCommandsFailClosed(t *testing.T) {
 				t.Fatal("unsupported scoped operation succeeded")
 			}
 			for _, r := range srv.Requests() {
-				if r.Path == "/v1/inbox" || r.Path == "/v1/inbox/ack" || r.Path == "/v1/groups/"+writeTestGroupUUID+"/join" {
+				if r.Path == "/v1/groups/"+writeTestGroupUUID+"/posts" || r.Path == "/v1/inbox" || r.Path == "/v1/inbox/ack" || r.Path == "/v1/groups/"+writeTestGroupUUID+"/join" {
 					t.Fatal("unsupported operation sent")
 				}
 			}
@@ -92,7 +97,7 @@ func TestWorkingGroupsCommandsFailClosed(t *testing.T) {
 
 func TestWorkingGroupsExplicitInvalidScope(t *testing.T) {
 	for _, raw := range []string{"", " ", "\t\n", "not-a-uuid"} {
-		for _, command := range []string{"inbox", "ack"} {
+		for _, command := range []string{"inbox", "ack", "feed"} {
 			t.Run(command+"/"+raw, func(t *testing.T) {
 				srv := fakeserver.New(t)
 				env, _, _, _ := newTestEnv(t, srv)
