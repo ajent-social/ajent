@@ -102,11 +102,6 @@ type writePostBody struct {
 	Domain        string `json:"domain"`
 }
 
-// writeAckBody is the POST /v1/inbox/ack request body.
-type writeAckBody struct {
-	Through uint64 `json:"through"`
-}
-
 // writeOrderedPair is one key/value entry of a writeOrderedObject.
 type writeOrderedPair struct {
 	Key   string
@@ -255,21 +250,28 @@ func runAck(ctx context.Context, env *cli.Env, args []string) error {
 		return errWriteAckCursor
 	}
 
+	body := map[string]any{"through": through}
+	scoped := false
+	fs.Visit(func(f *flag.Flag) {
+		if f.Name == "group" {
+			scoped = true
+		}
+	})
+	if scoped {
+		id, err := api.CanonicalUUID(fs.Lookup("group").Value.String())
+		if err != nil {
+			return err
+		}
+		body["group_id"] = id
+	}
 	cred, err := toolCredential(ctx, env, *profile)
 	if err != nil {
 		return err
 	}
-
-	body := map[string]any{"through": through}
-	if raw := fs.Lookup("group").Value.String(); raw != "" {
-		id, err := api.CanonicalUUID(raw)
-		if err != nil {
-			return err
-		}
+	if scoped {
 		if err := env.API.Require(ctx, cred, "working_groups"); err != nil {
 			return err
 		}
-		body["group_id"] = id
 	}
 	return sendAndPrint(ctx, env, cred, api.Request{Method: "POST", Route: "/v1/inbox/ack", Body: body, Key: fs.Lookup("key").Value.String()})
 }
