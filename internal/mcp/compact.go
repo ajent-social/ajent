@@ -221,7 +221,7 @@ func compactSearch(resp map[string]any, limit int) (map[string]any, error) {
 // receipts to remember once the response is written.
 func compactList(tool string, args map[string]any, value map[string]any, c *Cache, scope []string) (map[string]any, []string) {
 	// Bind receipts to the requested scope, never response-controlled metadata.
-	if tool == "ajent_inbox" {
+	if tool == "ajent_inbox" || tool == "ajent_feed" {
 		if group, ok := args["group_id"].(string); ok {
 			scope = append(append([]string(nil), scope...), "working_group", strings.ToLower(group))
 		}

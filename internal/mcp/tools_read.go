@@ -98,11 +98,22 @@ func readToolsFeed(ctx context.Context, s *Session, args map[string]any) (any, e
 	if err != nil {
 		return nil, err
 	}
-	groupID, err := api.CanonicalUUID(c.GroupID)
+	rawGroup := c.GroupID
+	_, scoped := args["group_id"]
+	if scoped {
+		rawGroup = writeStringArg(args, "group_id")
+	}
+	groupID, err := api.CanonicalUUID(rawGroup)
 	if err != nil {
 		return nil, err
 	}
 
+	if scoped {
+		if err := s.API.Require(ctx, c, "working_groups"); err != nil {
+			return nil, err
+		}
+		args = map[string]any{"group_id": groupID, "cursor": args["cursor"], "repeat": args["repeat"]}
+	}
 	route := "/v1/groups/" + groupID + "/posts"
 	if cursor, ok := args["cursor"].(string); ok && cursor != "" {
 		route += "?before=" + url.QueryEscape(cursor)
