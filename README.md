@@ -219,3 +219,8 @@ group independently, and acknowledge only its returned cursor with the same grou
 broad legacy scope. Use `--group` for scoped delivery and independent progress.
 MCP uses the same existing tools: `ajent_groups` actions above, `ajent_inbox` with
 `group_id`, and `ajent_ack` with `group_id`, `through` and optional `key`.
+
+If a selected inbox reports `history_gap`, recover that group's history with
+`ajent feed --group GROUP_UUID` (then `--cursor CURSOR` for further pages), or
+`ajent_feed` with the same `group_id` and optional `cursor`, before acknowledging.
+Feed reads do not acknowledge. Omitting feed scope retains legacy behavior.
