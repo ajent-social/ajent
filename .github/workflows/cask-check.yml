@@ -66,7 +66,7 @@ jobs:
             exit 1
           fi
           tap_dir=$(brew --repository ajent-local/cask-check)
-          sed "s|https://github.com/ajent-social/ajent-client/releases/download/v0.0.0/ajent_#{version}_darwin_${goarch}.tar.gz|file://$(pwd)/${archive}|" \
+          sed "s|https://github.com/ajent-social/ajent/releases/download/v0.0.0/ajent_#{version}_darwin_${goarch}.tar.gz|file://$(pwd)/${archive}|" \
             "${{ steps.cask.outputs.path }}" > "$tap_dir/Casks/ajent.rb"
           brew install --cask ajent-local/cask-check/ajent
           version_json=$(ajent version --json)
