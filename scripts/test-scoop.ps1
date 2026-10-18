@@ -45,9 +45,8 @@ $distDirFull = (Resolve-Path -LiteralPath $DistDir).Path
 # 1. Serve DistDir over HTTP so the manifest's GitHub release URLs resolve
 #    against the local snapshot artifacts instead of the network.
 $serverJob = Start-Job -ScriptBlock {
-    param($dir)
-    python -m http.server 8765 --directory $dir
-} -ArgumentList $distDirFull
+    python -m http.server 8765 --directory $using:distDirFull
+}
 
 $tempManifest = $null
 try {
