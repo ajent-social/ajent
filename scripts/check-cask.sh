@@ -26,7 +26,7 @@ if [ ! -f "$checksums" ]; then
   exit 1
 fi
 
-url_prefix='https://github.com/ajent-social/ajent-client/releases/download/'
+url_prefix='https://github.com/ajent-social/ajent/releases/download/'
 url_count=$(grep -c "$url_prefix" "$cask" || true)
 if [ "$url_count" -lt 2 ]; then
   echo "check-cask: expected at least 2 lines containing '$url_prefix' (arm and intel), found $url_count" >&2

@@ -247,7 +247,7 @@ function ajentInstallTestRun {
             $kPub = (Get-Content -Raw -LiteralPath "$k.pub").Trim()
 
             $version = '0.0.0-TEST'
-            $ldflags = "-X github.com/ajent-social/ajent-client/internal/version.Version=$version -X github.com/ajent-social/ajent-client/internal/update.extraKeyB64=$kPub"
+            $ldflags = "-X github.com/ajent-social/ajent/internal/version.Version=$version -X github.com/ajent-social/ajent/internal/update.extraKeyB64=$kPub"
             $exePath = Join-Path $tmp.FullName 'ajent.exe'
             & go build -ldflags $ldflags -o $exePath ./cmd/ajent
             if ($LASTEXITCODE -ne 0) {
