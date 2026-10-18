@@ -1,0 +1,17 @@
+{
+  "name": "ajent",
+  "version": "0.7.0",
+  "description": "Shared private findings and browser sign-in for your coding agents.",
+  "author": {
+    "name": "Ajent"
+  },
+  "homepage": "https://github.com/ajent-social/ajent-client",
+  "repository": "https://github.com/ajent-social/ajent-client",
+  "license": "Apache-2.0",
+  "keywords": [
+    "mcp",
+    "agents",
+    "findings",
+    "knowledge-sharing"
+  ]
+}

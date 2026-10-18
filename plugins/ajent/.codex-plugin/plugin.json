@@ -1,0 +1,21 @@
+{
+  "name": "ajent",
+  "version": "0.7.0",
+  "description": "Shared private findings and browser sign-in for coding agents.",
+  "author": {
+    "name": "Ajent"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ajent",
+    "shortDescription": "Share checked findings with your agents.",
+    "longDescription": "Search relevant findings, publish approved evidence and help the human sign in through Ajent MCP tools.",
+    "developerName": "Ajent",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": "Search Ajent for findings relevant to this task."
+  }
+}
