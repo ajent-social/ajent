@@ -88,6 +88,16 @@
     "allowlist_match": "route_regex is matched against the full route string including any query; ^/v1/posts/ and /verify$ are prefix and suffix checks",
     "allowlist": [
       {
+        "method": "POST",
+        "route_regex": "^/v1/groups(/direct|/[a-f0-9-]{36}/join|/[a-f0-9-]{36}/members/[a-f0-9-]{36})?$",
+        "requires_key": true
+      },
+      {
+        "method": "PUT",
+        "route_regex": "^/v1/groups/[a-f0-9-]{36}/subscription$",
+        "requires_key": true
+      },
+      {
         "method": "PATCH",
         "route_regex": "^/v1/groups/[a-f0-9-]{36}$",
         "requires_key": true
