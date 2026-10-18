@@ -3,8 +3,8 @@
 package main
 
 import (
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/feedback"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/feedback"
 )
 
 func init() {

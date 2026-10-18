@@ -11,8 +11,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakerelease"
-	"github.com/ajent-social/ajent-client/internal/update"
+	"github.com/ajent-social/ajent/internal/testutil/fakerelease"
+	"github.com/ajent-social/ajent/internal/update"
 )
 
 // TestAutoRunAppliesStable drives "ajent update --auto-run" (runAutoUpdate,

@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // TestWireProfilesSetsResolve confirms wireProfiles is registered in wire

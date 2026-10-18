@@ -9,9 +9,9 @@ import (
 	"flag"
 	"strings"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // profileFlags defines --profile (default "terminal") on fs and returns

@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/setup"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/setup"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // TestSetupHookAssigned confirms that this package's init() wires

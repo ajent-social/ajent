@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // binaryPath is the ajent binary TestMain builds once, before any test in

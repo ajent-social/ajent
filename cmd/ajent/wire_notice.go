@@ -7,9 +7,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // osArgs is a seam over os.Args, so wireNotice's tests can choose which

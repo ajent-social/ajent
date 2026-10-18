@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // autoUpdateInterval is the minimum time between automatic-update spawns

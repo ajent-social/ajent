@@ -7,8 +7,8 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/setup"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/setup"
 )
 
 func init() {

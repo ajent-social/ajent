@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
+	"github.com/ajent-social/ajent/internal/cli"
 )
 
 func TestWatchFromStart(t *testing.T) {

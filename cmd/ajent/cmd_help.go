@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
+	"github.com/ajent-social/ajent/internal/cli"
 )
 
 func init() {

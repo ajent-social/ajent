@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
+	"github.com/ajent-social/ajent/internal/cli"
 )
 
 // gendocsCommittedDocsDir is where the committed, generated reference docs

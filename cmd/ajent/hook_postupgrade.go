@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/integrations"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/integrations"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // postUpgradeLockTimeout bounds how long "ajent post-upgrade" waits for

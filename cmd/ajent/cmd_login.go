@@ -11,8 +11,8 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/cli"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/cli"
 )
 
 func init() {

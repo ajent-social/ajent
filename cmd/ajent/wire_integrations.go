@@ -5,8 +5,8 @@ package main
 import (
 	"context"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/setup"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/setup"
 )
 
 // init assigns setup.Integrate (docs/tasks/T4.6.md step 6), reusing

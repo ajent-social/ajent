@@ -6,7 +6,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // TestRunMCPStdoutPurity proves that a failure before mcp.Serve starts
