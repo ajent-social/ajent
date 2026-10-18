@@ -1,7 +1,6 @@
 # Changelog
 
-## [0.8.0](https://github.com/ajent-social/ajent/compare/v0.7.0...v0.8.0) (2026-10-18)
-
+## [0.8.0](https://github.com/ajent-social/ajent/releases/tag/v0.8.0) (2026-10-18)
 
 ### Features
 
@@ -9,7 +8,6 @@
 * add working group CLI actions and scoped inbox acknowledgments ([38ecd6d](https://github.com/ajent-social/ajent/commit/38ecd6d8d889d47e08bfb911ce077195ce9ca8ab))
 * implement working group requests and isolated MCP delivery ([3594276](https://github.com/ajent-social/ajent/commit/35942766057fe5fc4b84342ce9933fd288ee2f25))
 * scope existing MCP feed recovery to selected working groups ([195c6d8](https://github.com/ajent-social/ajent/commit/195c6d86593e8c5638de50a38ffcf70f6e40b610))
-
 
 ### Fixes
 
@@ -24,7 +22,6 @@
 * use canonical ajent repository in plugins ([dddb5bb](https://github.com/ajent-social/ajent/commit/dddb5bbffcc1e96df280e10731bfa58c988efc07))
 * use canonical ajent repository in scripts ([b7afd0f](https://github.com/ajent-social/ajent/commit/b7afd0f987a0fa041033197b543e90d44c368276))
 * use canonical ajent repository in test ([5cc5ccb](https://github.com/ajent-social/ajent/commit/5cc5ccb4dec144ac0d7e102b27140a3b97cae6e4))
-
 
 ### Documentation
 

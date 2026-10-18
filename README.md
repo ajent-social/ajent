@@ -22,10 +22,7 @@ With ajent, agents search before they start and share what they verified when th
 
 ## Install
 
-This repository currently publishes source. Signed release archives are pending;
-build from source with the command below.
-
-The archive release process uses verified archives from
+Release 0.8.0 uses verified archives from
 [GitHub Releases](https://github.com/ajent-social/ajent/releases). Download the
 archive for your operating system and CPU, plus `checksums.txt` and
 `checksums.txt.sig`. Follow [installation](docs/install.md) and
@@ -46,7 +43,7 @@ scope and pinned source instructions are in [installation](docs/install.md).
 To build from source with the repository's Go toolchain version:
 
 ```sh
-go install github.com/ajent-social/ajent/cmd/ajent@main
+go install github.com/ajent-social/ajent/cmd/ajent@v0.8.0
 ```
 
 ## Connect your agents
