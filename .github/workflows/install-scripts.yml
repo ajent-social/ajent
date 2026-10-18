@@ -1,0 +1,107 @@
+# SPDX-License-Identifier: Apache-2.0
+name: install-scripts
+
+# Exercises scripts/install.sh and scripts/install.ps1 end to end against a
+# locally built GoReleaser snapshot served from a loopback HTTP server
+# (docs/tasks/T5.9.md).
+on:
+  pull_request:
+    paths:
+      - "scripts/install.*"
+      - "scripts/test-install.*"
+      - "internal/tools/signchecksums/**"
+      - ".github/workflows/install-scripts.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: install-scripts-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.26.9'
+
+      - uses: anchore/sbom-action/download-syft@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+
+      - uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
+        with:
+          version: v2.18.2
+          args: release --snapshot --clean --skip=sign,notarize,publish
+
+      - name: Install shellcheck
+        if: matrix.os == 'macos-latest'
+        run: brew install shellcheck
+
+      - name: shellcheck
+        run: shellcheck scripts/install.sh scripts/test-install.sh
+
+      - name: dash -n scripts/install.sh
+        if: matrix.os == 'ubuntu-latest'
+        run: dash -n scripts/install.sh
+
+      - name: busybox sh -n scripts/install.sh
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y busybox
+          busybox sh -n scripts/install.sh
+
+      - name: test-install.sh
+        run: |
+          version=$(jq -r .version dist/metadata.json)
+          sh scripts/test-install.sh dist "$version"
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.26.9'
+
+      - name: Install PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser -Repository PSGallery
+
+      - name: Lint install scripts
+        shell: pwsh
+        run: |
+          $results = @(
+            foreach ($path in @('scripts/install.ps1', 'scripts/test-install.ps1')) {
+              Invoke-ScriptAnalyzer -Path $path -Severity Warning,Error
+            }
+          )
+          if ($results) {
+            $results | Format-Table -AutoSize
+            throw "PSScriptAnalyzer reported $($results.Count) warning(s)/error(s)"
+          }
+
+      - name: test-install.ps1 (PowerShell 7)
+        shell: pwsh
+        run: pwsh -File scripts/test-install.ps1
+
+      - name: test-install.ps1 (Windows PowerShell 5.1)
+        shell: powershell
+        run: powershell -File scripts/test-install.ps1

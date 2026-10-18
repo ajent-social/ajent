@@ -1,0 +1,67 @@
+name: safety
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          tag=$(gh release view -R gitleaks/gitleaks --json tagName --jq .tagName)
+          ver=${tag#v}
+          asset="gitleaks_${ver}_linux_x64.tar.gz"
+          sums="gitleaks_${ver}_checksums.txt"
+          curl -sSLO "https://github.com/gitleaks/gitleaks/releases/download/${tag}/${asset}"
+          curl -sSLO "https://github.com/gitleaks/gitleaks/releases/download/${tag}/${sums}"
+          grep " ${asset}\$" "$sums" >checksum.txt
+          sha256sum -c checksum.txt
+          tar -xzf "$asset" gitleaks
+          chmod +x gitleaks
+          sudo install -m 0755 gitleaks /usr/local/bin/gitleaks
+      - name: Run gitleaks
+        run: gitleaks git --config .gitleaks.toml --redact --verbose
+
+  leak-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Run leak-scan self-tests
+        run: sh scripts/leak-scan_test.sh
+      - name: Run leak-scan
+        env:
+          LEAK_DENYLIST: ${{ secrets.LEAK_DENYLIST }}
+          LEAK_SCAN_REQUIRED: ${{ github.event_name == 'push' && '1' || '0' }}
+          LEAK_SCAN_DIFF_BASE: ${{ github.event.pull_request.base.sha }}
+        run: scripts/leak-scan.sh .
+
+  dco:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Check DCO sign-off
+        run: |
+          base=${{ github.event.pull_request.base.sha }}
+          head=${{ github.event.pull_request.head.sha }}
+          missing=0
+          for c in $(git rev-list --no-merges "$base..$head"); do
+            git log -1 --format=%B "$c" | grep -qE '^Signed-off-by: .+ <.+>$' || { echo "missing sign-off: $c"; missing=1; }
+          done
+          exit $missing

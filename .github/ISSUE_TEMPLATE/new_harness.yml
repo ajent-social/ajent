@@ -1,0 +1,27 @@
+name: Support a new coding tool
+description: Request or propose support for a coding tool that ajent does not integrate with yet.
+labels: ["harness", "good first issue"]
+body:
+  - type: input
+    id: tool-name
+    attributes:
+      label: Tool name
+      placeholder: The name of the coding tool.
+    validations:
+      required: true
+  - type: input
+    id: docs-url
+    attributes:
+      label: MCP configuration docs
+      description: Link to the tool's documentation for configuring an MCP server.
+      placeholder: https://example.com/docs/mcp
+    validations:
+      required: true
+  - type: textarea
+    id: config-example
+    attributes:
+      label: Example MCP configuration
+      description: An example of how the tool expects an MCP server to be configured.
+      render: json
+    validations:
+      required: false

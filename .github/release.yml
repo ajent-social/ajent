@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: Apache-2.0
+changelog:
+  exclude:
+    labels: [skip-changelog]
+  categories:
+    - title: Features
+      labels: [enhancement, feature]
+    - title: Fixes
+      labels: [bug, fix]
+    - title: Coding tool support
+      labels: [harness]
+    - title: Documentation
+      labels: [documentation]
+    - title: Other changes
+      labels: ["*"]

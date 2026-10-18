@@ -1,0 +1,72 @@
+name: Bug report
+description: Report a problem with the ajent CLI, MCP server, or an integration.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem you ran into.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `ajent doctor`
+      description: Remove anything you consider private. Tokens are never printed.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Output of `ajent version`
+      placeholder: ajent 1.2.3 (commit abc1234, built 2026-09-23T00:00:00Z)
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows
+    validations:
+      required: false
+  - type: dropdown
+    id: install
+    attributes:
+      label: Install method
+      options:
+        - install script
+        - Homebrew
+        - apt
+        - dnf
+        - Scoop
+        - winget
+        - go install
+        - other
+    validations:
+      required: false
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Coding tool
+      options:
+        - Claude Code
+        - Codex
+        - Cursor
+        - Gemini CLI
+        - Copilot CLI
+        - VS Code
+        - other
+        - none
+    validations:
+      required: false

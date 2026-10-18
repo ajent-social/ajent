@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: Apache-2.0
+# T5.5: validates the Homebrew cask on a macOS runner. `brew style` and a
+# real `brew install --cask` both require Homebrew's tap machinery, which
+# this workflow exercises only against a disposable local tap on the
+# ephemeral runner -- never on a developer's own Homebrew installation.
+name: cask-check
+on:
+  pull_request:
+    paths:
+      - '.goreleaser.yaml'
+      - 'scripts/check-cask.sh'
+      - '.github/workflows/cask-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cask-check:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.26.9'
+      - uses: anchore/sbom-action/download-syft@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+      - uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
+        with:
+          version: v2.18.2
+          args: check
+      - uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
+        with:
+          version: v2.18.2
+          args: release --snapshot --clean --skip=sign,notarize,publish
+      - name: Locate rendered cask
+        id: cask
+        run: |
+          cask=$(find dist -name ajent.rb | head -1)
+          if [ -z "$cask" ]; then
+            echo "cask-check: no rendered ajent.rb found under dist/" >&2
+            exit 1
+          fi
+          echo "path=$cask" >> "$GITHUB_OUTPUT"
+      - name: scripts/check-cask.sh
+        run: sh scripts/check-cask.sh "${{ steps.cask.outputs.path }}"
+      - name: brew style (disposable local tap)
+        run: |
+          set -eu
+          brew tap-new --no-git ajent-local/cask-check
+          tap_dir=$(brew --repository ajent-local/cask-check)
+          mkdir -p "$tap_dir/Casks"
+          cp "${{ steps.cask.outputs.path }}" "$tap_dir/Casks/ajent.rb"
+          brew style --cask ajent-local/cask-check/ajent
+      - name: Local file-URL install test
+        run: |
+          set -eu
+          arch=$(uname -m)
+          case "$arch" in
+            arm64) goarch=arm64 ;;
+            x86_64) goarch=amd64 ;;
+            *) echo "cask-check: unsupported arch $arch" >&2; exit 1 ;;
+          esac
+          archive=$(find dist -maxdepth 1 -name "ajent_*_darwin_${goarch}.tar.gz" | head -1)
+          if [ -z "$archive" ]; then
+            echo "cask-check: no darwin_${goarch} archive found under dist/" >&2
+            exit 1
+          fi
+          tap_dir=$(brew --repository ajent-local/cask-check)
+          sed "s|https://github.com/ajent-social/ajent-client/releases/download/v0.0.0/ajent_#{version}_darwin_${goarch}.tar.gz|file://$(pwd)/${archive}|" \
+            "${{ steps.cask.outputs.path }}" > "$tap_dir/Casks/ajent.rb"
+          brew install --cask ajent-local/cask-check/ajent
+          version_json=$(ajent version --json)
+          echo "$version_json"
+          echo "$version_json" | jq -e '.version | test("SNAPSHOT")'
+          brew uninstall --cask ajent-local/cask-check/ajent
+      - name: Untap disposable local tap
+        if: always()
+        run: brew untap ajent-local/cask-check || true

@@ -1,0 +1,43 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: npx --yes markdownlint-cli2@0.23.3 "**/*.md" "#scripts/testdata"
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config lychee.toml --no-progress './**/*.md'
+          fail: true
+
+  links-selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: selftest
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config /dev/null --no-progress scripts/testdata/links/broken.md
+          fail: false
+      - name: Confirm the link check can fail
+        run: |
+          if [ "${{ steps.selftest.outputs.exit_code }}" = "0" ]; then
+            echo "expected lychee to report broken links in scripts/testdata/links/broken.md" >&2
+            exit 1
+          fi

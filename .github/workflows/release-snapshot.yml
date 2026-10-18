@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: Apache-2.0
+name: release-snapshot
+on:
+  pull_request:
+    paths:
+      - '.goreleaser.yaml'
+      - 'cmd/**'
+      - 'internal/tools/**'
+      - 'packaging/**'
+      - 'scripts/install.*'
+      - '.github/workflows/release-snapshot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.26.9'
+      - uses: anchore/sbom-action/download-syft@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+      - uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
+        with:
+          version: v2.18.2
+          args: release --snapshot --clean --skip=sign,notarize,publish
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dist
+          path: dist/
+          retention-days: 3
+      - name: Verify injected version
+        run: |
+          bin=$(find dist -type f -name ajent -path '*linux_amd64*' | head -1)
+          "$bin" version --json | jq -e '.version | test("SNAPSHOT")'
+
+  # Manual branch qualification avoids a heavy build on a busy development host.
+  # PR checks continue to use the existing cross-platform CI matrix.
+  manual-verification:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.26.9'
+      - name: Install the project linter
+        run: go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.13.2
+      - name: Required project checks
+        run: make fmt lint test
+      - name: Generated documentation and clean formatting
+        run: |
+          make docs
+          git diff --exit-code

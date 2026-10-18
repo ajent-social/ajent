@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: Apache-2.0
+name: docs-drift
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  docs-drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        with:
+          go-version: '1.26.9'
+      - name: make docs
+        run: make docs
+      - name: fail if docs/commands.md or docs/mcp-tools.md are stale
+        run: git diff --exit-code docs/commands.md docs/mcp-tools.md

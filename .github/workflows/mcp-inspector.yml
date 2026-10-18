@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: Apache-2.0
+name: mcp-inspector
+
+# Smoke-checks the ajent MCP server against the reference MCP Inspector CLI.
+# This is a best-effort signal, not a release gate: continue-on-error keeps
+# an Inspector-side regression from blocking a pull request
+# (docs/tasks/T3.7.md).
+on:
+  pull_request:
+    paths:
+      - "internal/mcp/**"
+      - "cmd/ajent/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mcp-inspector-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        with:
+          go-version: '1.26.9'
+
+      - name: Build ajent
+        run: go build -o ./ajent ./cmd/ajent
+
+      # internal/testutil/fakeserver/cmd does not exist yet. When a later
+      # task adds it, this step starts it and points AJENT_URL at the
+      # printed loopback URL; until then, tools/list still runs (it needs
+      # no live backend), against an unreachable loopback address so no
+      # real network call is ever attempted.
+      - name: Start fake server if available
+        id: fakeserver
+        run: |
+          if [ -d internal/testutil/fakeserver/cmd ]; then
+            go run ./internal/testutil/fakeserver/cmd > fakeserver.log 2>&1 &
+            echo "pid=$!" >> "$GITHUB_OUTPUT"
+            sleep 2
+            url=$(grep -oE 'https?://[^ ]+' fakeserver.log | head -n1 || true)
+            if [ -z "$url" ]; then
+              echo "fakeserver: started but printed no URL; skipping network tools" >&2
+              url="http://127.0.0.1:1"
+            fi
+            echo "url=$url" >> "$GITHUB_OUTPUT"
+          else
+            echo "internal/testutil/fakeserver/cmd not present; skipping network tools, running tools/list only" >&2
+            echo "url=http://127.0.0.1:1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Prepare private Inspector credential fixture
+        id: credential
+        env:
+          AJENT_URL: ${{ steps.fakeserver.outputs.url }}
+        run: |
+          config_dir=$(mktemp -d "$RUNNER_TEMP/ajent-inspector.XXXXXX")
+          chmod 700 "$config_dir"
+          printf '{"server":"%s","token":"aj_0000000000000000_ciplaceholder0000000000000000000000000"}\n' "$AJENT_URL" > "$config_dir/credential.json"
+          chmod 600 "$config_dir/credential.json"
+          python3 - "$config_dir" "$PWD/ajent" "$AJENT_URL" <<'PYCONFIG'
+          import json, pathlib, sys
+          root, binary, url = sys.argv[1:]
+          config = {"mcpServers": {"ajent": {"command": binary,
+              "args": ["mcp", "--profile", "ci"],
+              "env": {"AJENT_CONFIG_DIR": root, "AJENT_URL": url}}}}
+          pathlib.Path(root, "inspector.json").write_text(json.dumps(config))
+          PYCONFIG
+          chmod 600 "$config_dir/inspector.json"
+          echo "config_dir=$config_dir" >> "$GITHUB_OUTPUT"
+
+      - name: Run MCP Inspector (tools/list)
+        env:
+          AJENT_URL: ${{ steps.fakeserver.outputs.url }}
+          AJENT_CONFIG_DIR: ${{ steps.credential.outputs.config_dir }}
+        run: |
+          {
+            echo "## MCP Inspector: tools/list"
+            echo '```json'
+            npx -y @modelcontextprotocol/inspector --cli --config "$AJENT_CONFIG_DIR/inspector.json" --server ajent --method tools/list
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Stop fake server
+        if: always()
+        run: |
+          if [ -n "${{ steps.fakeserver.outputs.pid }}" ]; then
+            kill "${{ steps.fakeserver.outputs.pid }}" 2>/dev/null || true
+          fi
+          if [ -n "${{ steps.credential.outputs.config_dir }}" ]; then
+            rm -rf "${{ steps.credential.outputs.config_dir }}"
+          fi
