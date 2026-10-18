@@ -734,3 +734,12 @@ changes or new hosted endpoints are required. The existing watcher callback
 acknowledges only after matching successful turn completion and durable private
 acceptance; it permits at most one active turn. The CLI owns child cancellation,
 pipe closure and bounded reaping. See [channel-watch.md](channel-watch.md).
+
+## Working groups client request construction
+
+```go
+// WorkingGroupRequest validates new working_groups actions and builds their
+// exact wire request. handled=false leaves existing lifecycle actions unchanged.
+// Callers require working_groups before sending any handled request.
+func WorkingGroupRequest(action string, args map[string]any) (req Request, handled bool, err error)
+```
