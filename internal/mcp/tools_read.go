@@ -158,8 +158,19 @@ func readToolsInbox(ctx context.Context, s *Session, args map[string]any) (any, 
 		return nil, err
 	}
 
+	route := "/v1/inbox"
+	if raw, present := args["group_id"]; present {
+		id, err := writeUUIDArg(raw)
+		if err != nil {
+			return nil, err
+		}
+		if err := s.API.Require(ctx, c, "working_groups"); err != nil {
+			return nil, err
+		}
+		route += "?group_id=" + url.QueryEscape(id)
+	}
 	var resp map[string]any
-	if err := s.API.Do(ctx, c, api.Request{Method: "GET", Route: "/v1/inbox"}, &resp); err != nil {
+	if err := s.API.Do(ctx, c, api.Request{Method: "GET", Route: route}, &resp); err != nil {
 		return nil, err
 	}
 

@@ -1,0 +1,129 @@
+// SPDX-License-Identifier: Apache-2.0
+
+package mcp
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"strings"
+	"testing"
+
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
+)
+
+func TestCompactListWorkingGroupIsolation(t *testing.T) {
+	c := OpenCache(t.TempDir(), "terminal")
+	scope := []string{"origin", "agent", "workspace"}
+	value := map[string]any{"items": []any{map[string]any{"id": "post", "seq": float64(7), "kind": "finding", "body": "checked"}}, "acknowledge_through": float64(7)}
+	for _, group := range []string{"", "group-a", "group-b", "group-a"} {
+		args := map[string]any{}
+		if group != "" {
+			args["group_id"] = group
+		}
+		out, receipts := compactList("ajent_inbox", args, value, c, scope)
+		want := 1
+		if group == "group-a" && c.Seen(c.Key(append(append([]string(nil), scope...), "working_group", group), "inbox", value["items"].([]any)[0])) {
+			want = 0
+		}
+		if len(out["items"].([]any)) != want {
+			t.Fatalf("group=%q delivery suppressed across scopes", group)
+		}
+		c.Remember(receipts...)
+	}
+}
+
+func TestWorkingGroupsCapabilityAndWire(t *testing.T) {
+	for _, supported := range []bool{false, true} {
+		t.Run(map[bool]string{false: "absent", true: "available"}[supported], func(t *testing.T) {
+			srv := fakeserver.New(t)
+			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, r *http.Request) {
+				caps := []string{}
+				if supported {
+					caps = append(caps, "working_groups")
+				}
+				_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": caps})
+			})
+			srv.Handle("POST", "/v1/groups/direct", func(w http.ResponseWriter, r *http.Request) {
+				_ = json.NewEncoder(w).Encode(map[string]any{"id": writeTestGroupID})
+			})
+			s := writeTestSession(t, srv)
+			_, err := writeGroupsHandle(context.Background(), s, map[string]any{"action": "direct", "agent_id": writeTestGroupID, "purpose_key": "review", "key": "stable"})
+			if (err == nil) != supported {
+				t.Fatalf("capability result=%v", err)
+			}
+			writes := 0
+			for _, r := range srv.Requests() {
+				if r.Method == "POST" {
+					writes++
+					if r.Path != "/v1/groups/direct" || r.Header.Get("Idempotency-Key") != "stable" {
+						t.Fatal("wrong mutation")
+					}
+					body := writeTestDecodeBody(t, r.Body)
+					if body["purpose_key"] != "review" || body["agent_id"] != writeTestGroupID {
+						t.Fatal("wrong direct body")
+					}
+				}
+			}
+			if supported && writes != 1 || !supported && writes != 0 {
+				t.Fatal("capability did not gate mutation")
+			}
+		})
+	}
+}
+
+func TestWorkingGroupsScopedInboxAck(t *testing.T) {
+	srv := fakeserver.New(t)
+	srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, r *http.Request) {
+		_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": []string{"working_groups"}})
+	})
+	srv.Handle("GET", "/v1/inbox", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Query().Get("group_id") != writeTestGroupID {
+			t.Error("unscoped inbox")
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"group_id": writeTestGroupID, "items": []any{}, "acknowledge_through": 3})
+	})
+	s := writeTestSession(t, srv)
+	if _, err := readToolsInbox(context.Background(), s, map[string]any{"group_id": writeTestGroupID}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := writeAckHandle(context.Background(), s, map[string]any{"group_id": writeTestGroupID, "through": float64(3), "key": "stable"}); err != nil {
+		t.Fatal(err)
+	}
+	for _, r := range srv.Requests() {
+		if r.Path == "/v1/inbox/ack" {
+			body := writeTestDecodeBody(t, r.Body)
+			if body["group_id"] != writeTestGroupID || body["through"] != float64(3) || r.Header.Get("Idempotency-Key") != "stable" {
+				t.Fatal("ack scope/key mismatch")
+			}
+		}
+	}
+}
+
+func TestCompactListWorkingGroupTruncation(t *testing.T) {
+	c := OpenCache(t.TempDir(), "terminal")
+	scope := []string{"origin", "agent", "workspace"}
+	items := []any{}
+	for i := 1; i <= 40; i++ {
+		items = append(items, map[string]any{"id": fmt.Sprint(i), "seq": float64(i), "kind": "finding", "body": strings.Repeat("x", 320)})
+	}
+	value := map[string]any{"items": items, "acknowledged_through": float64(0), "acknowledge_through": float64(40)}
+	a, receiptsA := compactList("ajent_inbox", map[string]any{"group_id": "group-a"}, value, c, scope)
+	c.Remember(receiptsA...)
+	b, receiptsB := compactList("ajent_inbox", map[string]any{"group_id": "group-b"}, value, c, scope)
+	if a["truncated"] != true || b["truncated"] != true || len(receiptsA) == 0 || len(receiptsA) != len(receiptsB) {
+		t.Fatal("truncated groups differ")
+	}
+	if a["acknowledge_through"] != b["acknowledge_through"] || a["acknowledge_through"] == float64(40) {
+		t.Fatal("cursor escaped compacted delivery")
+	}
+	for i := range receiptsA {
+		if receiptsA[i] == receiptsB[i] {
+			t.Fatal("compacted receipt crossed group scope")
+		}
+	}
+	if len(scope) != 3 {
+		t.Fatal("shared scope mutated")
+	}
+}

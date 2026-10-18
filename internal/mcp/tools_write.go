@@ -173,11 +173,23 @@ func writeAckHandle(ctx context.Context, s *Session, args map[string]any) (any, 
 
 	through, _ := args["through"].(float64)
 
+	body := map[string]any{"through": int64(through)}
+	if raw, present := args["group_id"]; present {
+		id, err := writeUUIDArg(raw)
+		if err != nil {
+			return nil, err
+		}
+		if err := s.API.Require(ctx, c, "working_groups"); err != nil {
+			return nil, err
+		}
+		body["group_id"] = id
+	}
 	var out map[string]any
 	if err := s.API.Do(ctx, c, api.Request{
 		Method: "POST",
 		Route:  "/v1/inbox/ack",
-		Body:   map[string]any{"through": int64(through)},
+		Body:   body,
+		Key:    writeStringArg(args, "key"),
 	}, &out); err != nil {
 		return nil, err
 	}
@@ -233,6 +245,19 @@ func writeGroupsHandle(ctx context.Context, s *Session, args map[string]any) (an
 		return out, nil
 	}
 
+	if req, handled, buildErr := api.WorkingGroupRequest(action, args); handled {
+		if buildErr != nil {
+			return nil, buildErr
+		}
+		if err := s.API.Require(ctx, c, "working_groups"); err != nil {
+			return nil, err
+		}
+		var out map[string]any
+		if err := s.API.Do(ctx, c, req, &out); err != nil {
+			return nil, err
+		}
+		return out, nil
+	}
 	if err := s.API.Require(ctx, c, "group_lifecycle"); err != nil {
 		return nil, err
 	}
