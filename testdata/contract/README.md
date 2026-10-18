@@ -1,0 +1,14 @@
+# Contract fixtures
+
+Frozen from the reference Python client 0.6.0 by T2.1. Rules are in docs/contract.md. All data is invented; UUIDs follow `00000000-0000-4000-8000-0000000000NN`.
+
+- `commands.json`: `{"version", "reference_version", "commands": [...]}`. One entry per CLI command (29 Python names plus 5 Go-only). Each has `python_name` (null for Go-only), `go_name`, `aliases`, `owner_task`, `credential` (`root`, `profile`, `existing-profile`, `none`), `summary`, `args`, `requests`, `stdout` (`json`, `text`, `none`) and `errors` (exact message text without the `ajent:` (followed by a space) prefix, and exit code).
+- Request entries (in commands.json and tools.json): `case`, `method`, `route` (literal path with example UUIDs, no query), `query` (decoded parameters), `body_fixture` (path under this directory or null), `idempotency_key` (`none`, `flag` = caller-supplied, `generated` = client-generated), `capability` (required capability or null), `retry_safe`, `response_fixture`.
+- `tools.json`: `protocol_versions`, `server_info`, `instructions_base` and `instructions_notice` (the initialize instructions text), `dynamic` (the help-improve enum rule) and `tools` in reference order. Each tool has `name`, `description`, `inputSchema` and `annotations` copied verbatim from the reference, plus `credential`, `requests`, `response` and `owner_task`. `response` is one of `passthrough`, `augmented` (fields added), `compact_search`, `delivery_compact` (feed and inbox compaction), `fragment` (read and goal fragments), `url_only` (login) or `feedback` (local help-improve results).
+- `errors.json`: status to code and action, the request-id rule, unsupported-capability and MCP client-error payloads, and the retry policy with its allowlist.
+- `routes.json`: the fake-server default table: `[{"method", "pattern" (Go regexp on the path), "status", "response"}]`. The first matching row wins; tests override single routes. `POST /v1/fleet` is included for lazy enrollment.
+- `responses/*.json`: default response bodies. `reliability_none.json` advertises no capabilities for capability-absent tests.
+- `requests/*.json`: exact request bodies in the reference key order. `fleet_*.json` are the three enrollment body shapes (private-only fallback, domain grant, and legacy with no settings).
+- `golden.json`: the fake root token, its identity, the feedback scope identity, and `ProjectScope` and `ProjectProfile` values for three roots, computed with the reference functions.
+- `files/home/.aj/`: Python-written golden files for that token: a completed root credential with an unknown `future_field`, `config.json`, `scope-grants.json`, a completed `terminal` profile and a pending `claude-code` profile for root `/home/dev/project`.
+- `files/project/`: a project root (`.git/HEAD` placeholder) whose `.aj/config.json` selects `example.com`.

@@ -1,0 +1,12 @@
+{
+  "theme": "dark",
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "fs-server.js"
+      ]
+    }
+  },
+  "telemetry": false
+}

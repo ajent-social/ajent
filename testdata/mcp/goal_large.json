@@ -1,0 +1,492 @@
+{
+  "goal": {
+    "id": "00000000-0000-4000-8000-000000000051",
+    "title": "Example goal",
+    "outcome": "Example outcome.",
+    "state": "open",
+    "version": 7
+  },
+  "events": [
+    {
+      "id": "00000000-0000-4000-8000-000000000100",
+      "kind": "message",
+      "body": "Example event number 100 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000101",
+      "kind": "message",
+      "body": "Example event number 101 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000102",
+      "kind": "message",
+      "body": "Example event number 102 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000103",
+      "kind": "message",
+      "body": "Example event number 103 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000104",
+      "kind": "message",
+      "body": "Example event number 104 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000105",
+      "kind": "message",
+      "body": "Example event number 105 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000106",
+      "kind": "message",
+      "body": "Example event number 106 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000107",
+      "kind": "message",
+      "body": "Example event number 107 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000108",
+      "kind": "message",
+      "body": "Example event number 108 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000109",
+      "kind": "message",
+      "body": "Example event number 109 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000110",
+      "kind": "message",
+      "body": "Example event number 110 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000111",
+      "kind": "message",
+      "body": "Example event number 111 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000112",
+      "kind": "message",
+      "body": "Example event number 112 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000113",
+      "kind": "message",
+      "body": "Example event number 113 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000114",
+      "kind": "message",
+      "body": "Example event number 114 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000115",
+      "kind": "message",
+      "body": "Example event number 115 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000116",
+      "kind": "message",
+      "body": "Example event number 116 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000117",
+      "kind": "message",
+      "body": "Example event number 117 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000118",
+      "kind": "message",
+      "body": "Example event number 118 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000119",
+      "kind": "message",
+      "body": "Example event number 119 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000120",
+      "kind": "message",
+      "body": "Example event number 120 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000121",
+      "kind": "message",
+      "body": "Example event number 121 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000122",
+      "kind": "message",
+      "body": "Example event number 122 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000123",
+      "kind": "message",
+      "body": "Example event number 123 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000124",
+      "kind": "message",
+      "body": "Example event number 124 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000125",
+      "kind": "message",
+      "body": "Example event number 125 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000126",
+      "kind": "message",
+      "body": "Example event number 126 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000127",
+      "kind": "message",
+      "body": "Example event number 127 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000128",
+      "kind": "message",
+      "body": "Example event number 128 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000129",
+      "kind": "message",
+      "body": "Example event number 129 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000130",
+      "kind": "message",
+      "body": "Example event number 130 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000131",
+      "kind": "message",
+      "body": "Example event number 131 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000132",
+      "kind": "message",
+      "body": "Example event number 132 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000133",
+      "kind": "message",
+      "body": "Example event number 133 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000134",
+      "kind": "message",
+      "body": "Example event number 134 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000135",
+      "kind": "message",
+      "body": "Example event number 135 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000136",
+      "kind": "message",
+      "body": "Example event number 136 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000137",
+      "kind": "message",
+      "body": "Example event number 137 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000138",
+      "kind": "message",
+      "body": "Example event number 138 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000139",
+      "kind": "message",
+      "body": "Example event number 139 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000140",
+      "kind": "message",
+      "body": "Example event number 140 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000141",
+      "kind": "message",
+      "body": "Example event number 141 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000142",
+      "kind": "message",
+      "body": "Example event number 142 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000143",
+      "kind": "message",
+      "body": "Example event number 143 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000144",
+      "kind": "message",
+      "body": "Example event number 144 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000145",
+      "kind": "message",
+      "body": "Example event number 145 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000146",
+      "kind": "message",
+      "body": "Example event number 146 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000147",
+      "kind": "message",
+      "body": "Example event number 147 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000148",
+      "kind": "message",
+      "body": "Example event number 148 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000149",
+      "kind": "message",
+      "body": "Example event number 149 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000150",
+      "kind": "message",
+      "body": "Example event number 150 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000151",
+      "kind": "message",
+      "body": "Example event number 151 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000152",
+      "kind": "message",
+      "body": "Example event number 152 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000153",
+      "kind": "message",
+      "body": "Example event number 153 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000154",
+      "kind": "message",
+      "body": "Example event number 154 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000155",
+      "kind": "message",
+      "body": "Example event number 155 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000156",
+      "kind": "message",
+      "body": "Example event number 156 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000157",
+      "kind": "message",
+      "body": "Example event number 157 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000158",
+      "kind": "message",
+      "body": "Example event number 158 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000159",
+      "kind": "message",
+      "body": "Example event number 159 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000160",
+      "kind": "message",
+      "body": "Example event number 160 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000161",
+      "kind": "message",
+      "body": "Example event number 161 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000162",
+      "kind": "message",
+      "body": "Example event number 162 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000163",
+      "kind": "message",
+      "body": "Example event number 163 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000164",
+      "kind": "message",
+      "body": "Example event number 164 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000165",
+      "kind": "message",
+      "body": "Example event number 165 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000166",
+      "kind": "message",
+      "body": "Example event number 166 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000167",
+      "kind": "message",
+      "body": "Example event number 167 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000168",
+      "kind": "message",
+      "body": "Example event number 168 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000169",
+      "kind": "message",
+      "body": "Example event number 169 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000170",
+      "kind": "message",
+      "body": "Example event number 170 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000171",
+      "kind": "message",
+      "body": "Example event number 171 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000172",
+      "kind": "message",
+      "body": "Example event number 172 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000173",
+      "kind": "message",
+      "body": "Example event number 173 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000174",
+      "kind": "message",
+      "body": "Example event number 174 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000175",
+      "kind": "message",
+      "body": "Example event number 175 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000176",
+      "kind": "message",
+      "body": "Example event number 176 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000177",
+      "kind": "message",
+      "body": "Example event number 177 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000178",
+      "kind": "message",
+      "body": "Example event number 178 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000179",
+      "kind": "message",
+      "body": "Example event number 179 for goal fragment testing.",
+      "created_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "next_before": null
+}

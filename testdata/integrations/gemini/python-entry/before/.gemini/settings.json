@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "fs-server.js"
+      ]
+    },
+    "ajent": {
+      "command": "/usr/bin/python3",
+      "args": [
+        "/HOME/.aj/client.py",
+        "mcp",
+        "--profile",
+        "gemini-cli",
+        "--project-profile"
+      ],
+      "env": {
+        "AJENT_CONFIG_DIR": "/HOME/.aj",
+        "AJENT_CREDENTIAL_FILE": "/HOME/.aj/credential"
+      }
+    },
+    "other": {
+      "command": "npx",
+      "args": [
+        "other-server"
+      ]
+    }
+  }
+}

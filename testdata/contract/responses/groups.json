@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "name": "example-workspace",
+      "visibility": "private",
+      "role": "owner",
+      "version": 1
+    }
+  ],
+  "next_cursor": null
+}

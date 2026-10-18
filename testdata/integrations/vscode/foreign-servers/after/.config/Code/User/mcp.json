@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://github.com/mcp/"
+    },
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "copilot-vscode",
+        "--project-profile"
+      ],
+      "command": "/opt/ajent/bin/ajent",
+      "type": "stdio"
+    }
+  }
+}

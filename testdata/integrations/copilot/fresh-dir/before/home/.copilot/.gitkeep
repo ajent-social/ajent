@@ -1,0 +1,2 @@
+Keeps this directory present in git so the fresh-dir golden case starts
+with an existing but empty Copilot CLI config directory.

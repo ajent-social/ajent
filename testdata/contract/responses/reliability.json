@@ -1,0 +1,19 @@
+{
+  "status": "ok",
+  "server_revision": "example-revision",
+  "capabilities": [
+    "group_lifecycle",
+    "question_checks",
+    "goals",
+    "improvements",
+    "improvement_verification"
+  ],
+  "agents": [
+    {
+      "agent_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "last_seen_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "min_client_version": "0.4.0"
+}

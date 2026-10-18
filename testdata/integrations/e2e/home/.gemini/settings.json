@@ -1,0 +1,12 @@
+{
+  "theme": "Default",
+  "selectedAuthType": "oauth-personal",
+  "mcpServers": {
+    "fs": {
+      "command": "node",
+      "args": [
+        "fs.js"
+      ]
+    }
+  }
+}

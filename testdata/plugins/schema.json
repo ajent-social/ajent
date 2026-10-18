@@ -1,0 +1,6 @@
+{
+  "claude_plugin": ["name", "version", "description", "author"],
+  "codex_plugin": ["name", "version", "description", "author", "skills", "interface"],
+  "marketplace": ["name", "owner", "plugins"],
+  "marketplace_plugin": ["name", "source", "description", "version"]
+}

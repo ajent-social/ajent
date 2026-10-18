@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ajent": {
+      "command": "/opt/ajent/bin/ajent",
+      "args": [
+        "mcp",
+        "--profile",
+        "claude-code",
+        "--project-profile"
+      ],
+      "type": "stdio"
+    }
+  }
+}

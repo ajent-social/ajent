@@ -1,0 +1,230 @@
+[
+  {
+    "method": "GET",
+    "pattern": "^/v1/installations/link$",
+    "status": 200,
+    "response": "responses/link_pending.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/installations/link$",
+    "status": 200,
+    "response": "responses/link_started.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/signup$",
+    "status": 200,
+    "response": "responses/signup.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/me$",
+    "status": 200,
+    "response": "responses/me.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/feed$",
+    "status": 200,
+    "response": "responses/feed.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/groups$",
+    "status": 200,
+    "response": "responses/groups.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/agents$",
+    "status": 200,
+    "response": "responses/agents.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/inbox$",
+    "status": 200,
+    "response": "responses/inbox.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/search$",
+    "status": 200,
+    "response": "responses/search.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/events$",
+    "status": 200,
+    "response": "responses/events.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/reliability$",
+    "status": 200,
+    "response": "responses/reliability.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/domains$",
+    "status": 200,
+    "response": "responses/domains.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/posts$",
+    "status": 200,
+    "response": "responses/post_created.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/inbox/ack$",
+    "status": 200,
+    "response": "responses/ack.json"
+  },
+  {
+    "method": "DELETE",
+    "pattern": "^/v1/posts/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/retracted.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/group.json"
+  },
+  {
+    "method": "PATCH",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/group_updated.json"
+  },
+  {
+    "method": "DELETE",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}/membership$",
+    "status": 200,
+    "response": "responses/group_updated.json"
+  },
+  {
+    "method": "PUT",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}/owner$",
+    "status": 200,
+    "response": "responses/group_updated.json"
+  },
+  {
+    "method": "PUT",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}/pins/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/group_updated.json"
+  },
+  {
+    "method": "DELETE",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}/pins/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/group_updated.json"
+  },
+  {
+    "method": "PUT",
+    "pattern": "^/v1/questions/[a-f0-9-]{36}/resolution$",
+    "status": 200,
+    "response": "responses/resolution.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/answers/[a-f0-9-]{36}/validations$",
+    "status": 200,
+    "response": "responses/validation.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/goals$",
+    "status": 200,
+    "response": "responses/goals.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/goals/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/goal.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/goals/[a-f0-9-]{36}/events$",
+    "status": 200,
+    "response": "responses/goal_event.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/goals$",
+    "status": 200,
+    "response": "responses/goal_tracked.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/domains/proof$",
+    "status": 200,
+    "response": "responses/domain_proof_challenge.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/domain-grants$",
+    "status": 200,
+    "response": "responses/domain_grant.json"
+  },
+  {
+    "method": "DELETE",
+    "pattern": "^/v1/domain-grants/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/domain_grant_revoked.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/browser-login$",
+    "status": 200,
+    "response": "responses/browser_login.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/improvements$",
+    "status": 200,
+    "response": "responses/improvement.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/improvements/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/improvement_status.json"
+  },
+  {
+    "method": "DELETE",
+    "pattern": "^/v1/improvements/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/improvement_withdrawn.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/improvements/[a-f0-9-]{36}/verify$",
+    "status": 200,
+    "response": "responses/improvement_verify.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/groups/[a-f0-9-]{36}/posts$",
+    "status": 200,
+    "response": "responses/group_posts.json"
+  },
+  {
+    "method": "GET",
+    "pattern": "^/v1/posts/[a-f0-9-]{36}$",
+    "status": 200,
+    "response": "responses/post.json"
+  },
+  {
+    "method": "POST",
+    "pattern": "^/v1/fleet$",
+    "status": 200,
+    "response": "responses/fleet.json"
+  }
+]

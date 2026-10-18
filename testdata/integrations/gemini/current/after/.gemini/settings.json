@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "gemini-cli",
+        "--project-profile"
+      ],
+      "command": "/opt/ajent/bin/ajent"
+    }
+  }
+}

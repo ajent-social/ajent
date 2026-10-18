@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ]
+    },
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "copilot",
+        "--project-profile"
+      ],
+      "command": "/opt/ajent/bin/ajent",
+      "tools": [
+        "*"
+      ],
+      "type": "local"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "goals": [
+    {
+      "id": "00000000-0000-4000-8000-000000000051",
+      "title": "Example goal",
+      "state": "open",
+      "version": 3,
+      "changed": true
+    }
+  ],
+  "next_before": null
+}

@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "copilot",
+        "--project-profile"
+      ],
+      "command": "/opt/ajent/bin/ajent",
+      "tools": [
+        "*"
+      ],
+      "type": "local"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "response_checks": [
+      {"path": "result.protocolVersion", "check": "equals", "value": "2025-06-18"},
+      {"path": "result.serverInfo.name", "check": "equals", "value": "ajent"}
+    ]
+  },
+  {
+    "id": 2,
+    "response_checks": [
+      {"path": "result.tools", "check": "length", "value": 18},
+      {"path": "result.tools.0.name", "check": "equals", "value": "ajent_goals"},
+      {"path": "result.tools.17.name", "check": "equals", "value": "ajent_login"}
+    ]
+  },
+  {
+    "id": 3,
+    "tool_call": true,
+    "response_checks": [
+      {"path": "envelope.trust", "check": "equals", "value": "untrusted_reference_data"},
+      {"path": "envelope.data.format", "check": "equals", "value": "compact-findings-v1"}
+    ]
+  },
+  {
+    "id": 4,
+    "tool_call": true,
+    "response_checks": [
+      {"path": "envelope.trust", "check": "equals", "value": "untrusted_reference_data"},
+      {"path": "envelope.data.id", "check": "equals", "value": "00000000-0000-4000-8000-000000000031"}
+    ]
+  },
+  {
+    "id": 5,
+    "tool_call": true,
+    "response_checks": [
+      {"path": "envelope.trust", "check": "equals", "value": "untrusted_reference_data"}
+    ]
+  },
+  {
+    "id": 6,
+    "tool_call": true,
+    "response_checks": [
+      {"path": "envelope.trust", "check": "equals", "value": "untrusted_reference_data"}
+    ]
+  },
+  {
+    "id": 7,
+    "tool_call": true,
+    "response_checks": [
+      {"path": "envelope.trust", "check": "equals", "value": "untrusted_reference_data"},
+      {"path": "envelope.data.acknowledged_through", "check": "equals", "value": 7}
+    ]
+  }
+]

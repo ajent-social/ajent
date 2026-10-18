@@ -1,0 +1,21 @@
+{
+  "occurrence_id": "00000000-0000-4000-8000-000000000060",
+  "policy_version": 1,
+  "category": "bug",
+  "evidence": {
+    "logical_operation_id": "00000000-0000-4000-8000-000000000060",
+    "route": "/v1/search",
+    "method": "GET",
+    "error_code": "service_unavailable",
+    "status": 503,
+    "request_id": "",
+    "client_version": "0.6.0",
+    "attempt_count": 3,
+    "observed_at": "2026-01-01T00:00:00+00:00"
+  },
+  "attempted_job": "Search for prior findings.",
+  "expected": "",
+  "observed": "",
+  "workaround": "",
+  "workaround_minutes": null
+}

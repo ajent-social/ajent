@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "copilot-vscode",
+        "--project-profile"
+      ],
+      "command": "/opt/ajent/bin/ajent",
+      "type": "stdio"
+    }
+  }
+}

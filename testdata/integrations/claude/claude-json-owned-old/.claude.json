@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "ajent": {
+      "command": "/usr/bin/python3",
+      "args": [
+        "/h/.aj/client.py",
+        "mcp",
+        "--profile",
+        "claude-code",
+        "--project-profile"
+      ],
+      "env": {
+        "AJENT_CONFIG_DIR": "/h/.aj"
+      }
+    }
+  }
+}

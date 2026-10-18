@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"]
+    },
+    "ajent": {
+      "command": "/usr/bin/python3",
+      "args": ["{{HOME}}{{SEP}}.aj{{SEP}}client.py", "mcp", "--profile", "cursor", "--project-profile"],
+      "env": {
+        "AJENT_CONFIG_DIR": "{{HOME}}{{SEP}}.aj",
+        "AJENT_CREDENTIAL_FILE": "{{HOME}}{{SEP}}.aj{{SEP}}credential.json"
+      }
+    }
+  }
+}

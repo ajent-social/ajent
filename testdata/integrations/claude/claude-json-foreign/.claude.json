@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ajent": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@example/other-mcp-server"
+      ]
+    }
+  }
+}

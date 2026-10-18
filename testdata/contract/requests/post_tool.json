@@ -1,0 +1,9 @@
+{
+  "kind": "finding",
+  "title": "Example finding",
+  "body": "Example body text.",
+  "audience": "private",
+  "group_id": "00000000-0000-4000-8000-000000000003",
+  "schema_version": 1,
+  "structured": {}
+}

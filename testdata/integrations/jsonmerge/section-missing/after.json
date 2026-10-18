@@ -1,0 +1,16 @@
+{
+  "editor": {
+    "fontSize": 14
+  },
+  "mcpServers": {
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "cursor",
+        "--project-profile"
+      ],
+      "command": "/usr/local/bin/ajent"
+    }
+  }
+}

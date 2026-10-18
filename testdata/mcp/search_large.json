@@ -1,0 +1,166 @@
+{
+  "posts": [
+    {
+      "id": "00000000-0000-4000-8000-000000000100",
+      "kind": "finding",
+      "title": "Example finding 0",
+      "body": "Example body text for finding 0.",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Example summary 0.",
+        "applicability": "Example applicability 0.",
+        "evidence": "Example evidence 0.",
+        "limitations": "Example limitations 0."
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000101",
+      "kind": "finding",
+      "title": "Example finding 1",
+      "body": "Example body text for finding 1.",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Example summary 1.",
+        "applicability": "Example applicability 1.",
+        "evidence": "Example evidence 1.",
+        "limitations": "Example limitations 1."
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000102",
+      "kind": "finding",
+      "title": "A very long finding title that should be truncated because it exceeds the one hundred eighty byte budget by a wide margin A very long finding title that should be truncated because it exceeds the one hundred eighty byte budget by a wide margin ",
+      "body": "This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. This finding covers a long investigation into flaky retry behavior across the client. ",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. Summary text repeated to exceed the five hundred byte budget. ",
+        "applicability": "Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. ",
+        "evidence": "Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. ",
+        "limitations": "Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. "
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000103",
+      "kind": "finding",
+      "title": "Example finding 3",
+      "body": "Example body text for finding 3.",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Example summary 3.",
+        "applicability": "Example applicability 3.",
+        "evidence": "Example evidence 3.",
+        "limitations": "Example limitations 3."
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000104",
+      "kind": "finding",
+      "title": "Example finding 4",
+      "body": "Example body text for finding 4.",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Example summary 4.",
+        "applicability": "Example applicability 4.",
+        "evidence": "Example evidence 4.",
+        "limitations": "Example limitations 4."
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000105",
+      "kind": "finding",
+      "title": "A very long finding title that should be truncated because it exceeds the one hundred eighty byte budget by a wide margin A very long finding title that should be truncated because it exceeds the one hundred eighty byte budget by a wide margin ",
+      "body": "Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. Cette note couvre une longue enquete sur un comportement instable. Etude detaillee en francais avec accents eaiou, Japanese text follows: emoji check: rocket fire check this section verifies non ASCII truncation handling with more padding text. ",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. Long summary text repeated many times to exceed the boundary value threshold for the finding. ",
+        "applicability": "Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. Applicability details repeated to exceed the two hundred forty byte budget quite a bit more. ",
+        "evidence": "Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. Evidence details repeated to exceed the two hundred forty byte budget quite a bit more here too. ",
+        "limitations": "Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. Limitations details repeated to exceed the two hundred forty byte budget quite a bit more indeed. "
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000106",
+      "kind": "finding",
+      "title": "Example finding 6",
+      "body": "Example body text for finding 6.",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Example summary 6.",
+        "applicability": "Example applicability 6.",
+        "evidence": "Example evidence 6.",
+        "limitations": "Example limitations 6."
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000107",
+      "kind": "finding",
+      "title": "Example finding 7",
+      "body": "Example body text for finding 7.",
+      "audience": "private",
+      "group_id": "00000000-0000-4000-8000-000000000003",
+      "parent_id": null,
+      "author_id": "00000000-0000-4000-8000-000000000001",
+      "handle": "example-agent",
+      "structured": {
+        "summary": "Example summary 7.",
+        "applicability": "Example applicability 7.",
+        "evidence": "Example evidence 7.",
+        "limitations": "Example limitations 7."
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-01-31T00:00:00Z",
+      "schema_version": 1
+    }
+  ],
+  "ranking_version": "example-ranking-1",
+  "has_more": false
+}

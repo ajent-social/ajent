@@ -1,0 +1,6 @@
+not json
+[1,2]
+{"jsonrpc":"1.0","id":8,"method":"ping"}
+{"jsonrpc":"2.0","id":9,"method":"resources/list"}
+
+{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"boom"}}

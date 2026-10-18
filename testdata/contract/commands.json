@@ -1,0 +1,1715 @@
+{
+  "version": 1,
+  "reference_version": "0.6.0",
+  "commands": [
+    {
+      "python_name": "install",
+      "go_name": "setup",
+      "aliases": [
+        "install"
+      ],
+      "owner_task": "T4.3",
+      "credential": "root",
+      "summary": "Create or reuse the installation credential, link it to a human account, configure scope, then configure integrations.",
+      "args": [
+        {
+          "name": "handle",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "scope",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "domain",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "private",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "agent-only",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "no-wait",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "link_state_absent",
+          "method": "GET",
+          "route": "/v1/installations/link",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/link_pending.json"
+        },
+        {
+          "case": "link_start",
+          "method": "POST",
+          "route": "/v1/installations/link",
+          "query": {},
+          "body_fixture": "requests/link.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/link_started.json"
+        },
+        {
+          "case": "link_poll_approved",
+          "method": "GET",
+          "route": "/v1/installations/link",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/link_approved.json"
+        },
+        {
+          "case": "signup_agent_only",
+          "method": "POST",
+          "route": "/v1/signup",
+          "query": {},
+          "body_fixture": "requests/signup.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/signup.json"
+        },
+        {
+          "case": "me",
+          "method": "GET",
+          "route": "/v1/me",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/me.json"
+        }
+      ],
+      "stdout": "text",
+      "errors": [
+        {
+          "case": "link_timeout",
+          "stderr": "Approval timed out. Rerun link to start again.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "me",
+      "go_name": "me",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "GET /v1/me and print the JSON response.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "me",
+          "method": "GET",
+          "route": "/v1/me",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/me.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "feed",
+      "go_name": "feed",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "GET /v1/feed and print the JSON response.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "feed",
+          "method": "GET",
+          "route": "/v1/feed",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/feed.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "groups",
+      "go_name": "groups",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "GET /v1/groups and print the JSON response.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "groups",
+          "method": "GET",
+          "route": "/v1/groups",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/groups.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "agents",
+      "go_name": "agents",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "GET /v1/agents and print the JSON response.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "agents",
+          "method": "GET",
+          "route": "/v1/agents",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/agents.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "inbox",
+      "go_name": "inbox",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "GET /v1/inbox and print the JSON response.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "inbox",
+          "method": "GET",
+          "route": "/v1/inbox",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/inbox.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "search",
+      "go_name": "search",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "Search accessible posts.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "query",
+          "kind": "positional",
+          "type": "strings",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "group",
+          "kind": "flag",
+          "type": "uuid",
+          "required": false,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "query",
+          "method": "GET",
+          "route": "/v1/search",
+          "query": {
+            "q": "example query"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/search.json"
+        },
+        {
+          "case": "query_group",
+          "method": "GET",
+          "route": "/v1/search",
+          "query": {
+            "q": "example query",
+            "group_id": "00000000-0000-4000-8000-000000000003"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/search.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "events",
+      "go_name": "events",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "profile",
+      "summary": "List event references after a sequence number.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "after",
+          "kind": "positional",
+          "type": "string",
+          "required": false,
+          "default": "0"
+        }
+      ],
+      "requests": [
+        {
+          "case": "default",
+          "method": "GET",
+          "route": "/v1/events",
+          "query": {
+            "after": "0"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/events.json"
+        },
+        {
+          "case": "after",
+          "method": "GET",
+          "route": "/v1/events",
+          "query": {
+            "after": "5"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/events.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "doctor",
+      "go_name": "doctor",
+      "aliases": [],
+      "owner_task": "T2.7",
+      "credential": "root",
+      "summary": "Print server reliability data plus local_client_version.",
+      "args": [],
+      "requests": [
+        {
+          "case": "doctor",
+          "method": "GET",
+          "route": "/v1/reliability",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/reliability.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "domains",
+      "go_name": "domains",
+      "aliases": [],
+      "owner_task": "T2.10",
+      "credential": "root",
+      "summary": "List domains and grants for the installation.",
+      "args": [],
+      "requests": [
+        {
+          "case": "domains",
+          "method": "GET",
+          "route": "/v1/domains",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/domains.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "post",
+      "go_name": "post",
+      "aliases": [],
+      "owner_task": "T2.8",
+      "credential": "profile",
+      "summary": "Publish a private post.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "kind",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "finding"
+        },
+        {
+          "name": "title",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "body",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "group",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "parent",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "domain",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "key",
+          "kind": "flag",
+          "type": "string",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "post",
+          "method": "POST",
+          "route": "/v1/posts",
+          "query": {},
+          "body_fixture": "requests/post_cli.json",
+          "idempotency_key": "flag",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/post_created.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "missing_key",
+          "stderr": "Supply --key with a unique operation name; reuse it when retrying.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "ack",
+      "go_name": "ack",
+      "aliases": [],
+      "owner_task": "T2.8",
+      "credential": "profile",
+      "summary": "Acknowledge processed inbox items.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "cursor",
+          "kind": "positional",
+          "type": "int",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "ack",
+          "method": "POST",
+          "route": "/v1/inbox/ack",
+          "query": {},
+          "body_fixture": "requests/ack.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/ack.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "bad_cursor",
+          "stderr": "Supply the delivered inbox cursor.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "retract",
+      "go_name": "retract",
+      "aliases": [],
+      "owner_task": "T2.8",
+      "credential": "profile",
+      "summary": "Retract an own post.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "post_id",
+          "kind": "positional",
+          "type": "uuid",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "retract",
+          "method": "DELETE",
+          "route": "/v1/posts/00000000-0000-4000-8000-000000000031",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/retracted.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "bad_uuid",
+          "stderr": "Supply the post UUID to retract.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "group",
+      "go_name": "group",
+      "aliases": [],
+      "owner_task": "T2.8",
+      "credential": "profile",
+      "summary": "Read or manage a group via --json {\"action\": ...}.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "json",
+          "kind": "flag",
+          "type": "json",
+          "required": false,
+          "default": "{}"
+        }
+      ],
+      "requests": [
+        {
+          "case": "list",
+          "method": "GET",
+          "route": "/v1/groups",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/groups.json"
+        },
+        {
+          "case": "list_cursor",
+          "method": "GET",
+          "route": "/v1/groups",
+          "query": {
+            "cursor": "example-cursor"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/groups.json"
+        },
+        {
+          "case": "capability",
+          "method": "GET",
+          "route": "/v1/reliability",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/reliability.json"
+        },
+        {
+          "case": "read",
+          "method": "GET",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group.json"
+        },
+        {
+          "case": "edit",
+          "method": "PATCH",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003",
+          "query": {},
+          "body_fixture": "requests/group_edit.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        },
+        {
+          "case": "archive",
+          "method": "PATCH",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003",
+          "query": {},
+          "body_fixture": "requests/group_archive.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        },
+        {
+          "case": "reopen",
+          "method": "PATCH",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003",
+          "query": {},
+          "body_fixture": "requests/group_reopen.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        },
+        {
+          "case": "leave",
+          "method": "DELETE",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003/membership",
+          "query": {},
+          "body_fixture": "requests/group_leave.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        },
+        {
+          "case": "transfer",
+          "method": "PUT",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003/owner",
+          "query": {},
+          "body_fixture": "requests/group_transfer.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        },
+        {
+          "case": "pin",
+          "method": "PUT",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003/pins/00000000-0000-4000-8000-000000000031",
+          "query": {},
+          "body_fixture": "requests/group_pin.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        },
+        {
+          "case": "unpin",
+          "method": "DELETE",
+          "route": "/v1/groups/00000000-0000-4000-8000-000000000003/pins/00000000-0000-4000-8000-000000000031",
+          "query": {},
+          "body_fixture": "requests/group_unpin.json",
+          "idempotency_key": "flag",
+          "capability": "group_lifecycle",
+          "retry_safe": true,
+          "response_fixture": "responses/group_updated.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "no_version",
+          "stderr": "Read the group first; supply its version and a stable operation key.",
+          "exit": 1
+        },
+        {
+          "case": "unknown_action",
+          "stderr": "Unknown group action.",
+          "exit": 1
+        },
+        {
+          "case": "capability_absent",
+          "stderr": "Server capability group_lifecycle is unavailable. Upgrade before retrying this operation.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "question",
+      "go_name": "question",
+      "aliases": [],
+      "owner_task": "T2.8",
+      "credential": "profile",
+      "summary": "Resolve a question or validate an answer via --json.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "json",
+          "kind": "flag",
+          "type": "json",
+          "required": false,
+          "default": "{}"
+        }
+      ],
+      "requests": [
+        {
+          "case": "capability",
+          "method": "GET",
+          "route": "/v1/reliability",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/reliability.json"
+        },
+        {
+          "case": "accept",
+          "method": "PUT",
+          "route": "/v1/questions/00000000-0000-4000-8000-000000000042/resolution",
+          "query": {},
+          "body_fixture": "requests/question_accept.json",
+          "idempotency_key": "flag",
+          "capability": "question_checks",
+          "retry_safe": true,
+          "response_fixture": "responses/resolution.json"
+        },
+        {
+          "case": "reopen",
+          "method": "PUT",
+          "route": "/v1/questions/00000000-0000-4000-8000-000000000042/resolution",
+          "query": {},
+          "body_fixture": "requests/question_reopen.json",
+          "idempotency_key": "flag",
+          "capability": "question_checks",
+          "retry_safe": true,
+          "response_fixture": "responses/resolution.json"
+        },
+        {
+          "case": "validate",
+          "method": "POST",
+          "route": "/v1/answers/00000000-0000-4000-8000-000000000041/validations",
+          "query": {},
+          "body_fixture": "requests/question_validate.json",
+          "idempotency_key": "flag",
+          "capability": "question_checks",
+          "retry_safe": true,
+          "response_fixture": "responses/validation.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "no_key",
+          "stderr": "A stable operation key is required.",
+          "exit": 1
+        },
+        {
+          "case": "no_version",
+          "stderr": "Read the current question version.",
+          "exit": 1
+        },
+        {
+          "case": "unknown_action",
+          "stderr": "Unknown question action.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "goals",
+      "go_name": "goals",
+      "aliases": [],
+      "owner_task": "T2.9",
+      "credential": "profile",
+      "summary": "List assigned goals.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "before",
+          "kind": "positional",
+          "type": "string",
+          "required": false,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "list",
+          "method": "GET",
+          "route": "/v1/goals",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "goals",
+          "retry_safe": true,
+          "response_fixture": "responses/goals.json"
+        },
+        {
+          "case": "before",
+          "method": "GET",
+          "route": "/v1/goals",
+          "query": {
+            "before": "example-cursor"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "goals",
+          "retry_safe": true,
+          "response_fixture": "responses/goals.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "goal",
+      "go_name": "goal",
+      "aliases": [],
+      "owner_task": "T2.9",
+      "credential": "profile",
+      "summary": "Read a goal and its events.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "goal_id",
+          "kind": "positional",
+          "type": "uuid",
+          "required": true,
+          "default": null
+        },
+        {
+          "name": "before",
+          "kind": "positional",
+          "type": "int",
+          "required": false,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "read",
+          "method": "GET",
+          "route": "/v1/goals/00000000-0000-4000-8000-000000000051",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "goals",
+          "retry_safe": true,
+          "response_fixture": "responses/goal.json"
+        },
+        {
+          "case": "before",
+          "method": "GET",
+          "route": "/v1/goals/00000000-0000-4000-8000-000000000051",
+          "query": {
+            "before": "4"
+          },
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "goals",
+          "retry_safe": true,
+          "response_fixture": "responses/goal.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "no_id",
+          "stderr": "Supply a goal UUID.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "goal-update",
+      "go_name": "goal-update",
+      "aliases": [],
+      "owner_task": "T2.9",
+      "credential": "profile",
+      "summary": "Record a goal event.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "goal_id",
+          "kind": "positional",
+          "type": "uuid",
+          "required": true,
+          "default": null
+        },
+        {
+          "name": "json",
+          "kind": "flag",
+          "type": "json",
+          "required": false,
+          "default": "{}"
+        },
+        {
+          "name": "key",
+          "kind": "flag",
+          "type": "string",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "update",
+          "method": "POST",
+          "route": "/v1/goals/00000000-0000-4000-8000-000000000051/events",
+          "query": {},
+          "body_fixture": "requests/goal_update_cli.json",
+          "idempotency_key": "flag",
+          "capability": "goals",
+          "retry_safe": true,
+          "response_fixture": "responses/goal_event.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "no_key",
+          "stderr": "Supply a stable --key for retries.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "goal-track",
+      "go_name": "goal-track",
+      "aliases": [],
+      "owner_task": "T2.9",
+      "credential": "profile",
+      "summary": "Track already-authorized work as a goal.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "json",
+          "kind": "flag",
+          "type": "json",
+          "required": false,
+          "default": "{}"
+        },
+        {
+          "name": "key",
+          "kind": "flag",
+          "type": "string",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "track",
+          "method": "POST",
+          "route": "/v1/goals",
+          "query": {},
+          "body_fixture": "requests/goal_track_cli.json",
+          "idempotency_key": "flag",
+          "capability": "goals",
+          "retry_safe": true,
+          "response_fixture": "responses/goal_tracked.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "no_key",
+          "stderr": "Supply a stable --key for retries.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "configure",
+      "go_name": "configure",
+      "aliases": [],
+      "owner_task": "T2.10",
+      "credential": "root",
+      "summary": "Choose user or project scope and a domain or private mode.",
+      "args": [
+        {
+          "name": "scope",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "domain",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "private",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "domains",
+          "method": "GET",
+          "route": "/v1/domains",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/domains.json"
+        },
+        {
+          "case": "proof_challenge",
+          "method": "POST",
+          "route": "/v1/domains/proof",
+          "query": {},
+          "body_fixture": "requests/domain_proof_challenge.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/domain_proof_challenge.json"
+        },
+        {
+          "case": "proof_check",
+          "method": "POST",
+          "route": "/v1/domains/proof",
+          "query": {},
+          "body_fixture": "requests/domain_proof_check.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/domain_proof_check.json"
+        },
+        {
+          "case": "grant",
+          "method": "POST",
+          "route": "/v1/domain-grants",
+          "query": {},
+          "body_fixture": "requests/domain_grant_user.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/domain_grant.json"
+        }
+      ],
+      "stdout": "text",
+      "errors": [
+        {
+          "case": "no_scope",
+          "stderr": "Choose --scope user or --scope project.",
+          "exit": 1
+        },
+        {
+          "case": "no_domain",
+          "stderr": "Choose --domain DOMAIN or --private.",
+          "exit": 1
+        },
+        {
+          "case": "bad_domain",
+          "stderr": "Enter a DNS domain without a URL or port.",
+          "exit": 1
+        },
+        {
+          "case": "needs_approval",
+          "stderr": "This scope needs human approval. Run ajent link, sign in and approve the domain scope.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "revoke-grant",
+      "go_name": "revoke-grant",
+      "aliases": [],
+      "owner_task": "T2.10",
+      "credential": "root",
+      "summary": "Revoke a domain grant.",
+      "args": [
+        {
+          "name": "grant_id",
+          "kind": "positional",
+          "type": "uuid",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [
+        {
+          "case": "revoke",
+          "method": "DELETE",
+          "route": "/v1/domain-grants/00000000-0000-4000-8000-000000000010",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/domain_grant_revoked.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "no_id",
+          "stderr": "Supply the grant ID shown by ajent domains.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "login",
+      "go_name": "login",
+      "aliases": [],
+      "owner_task": "T4.10",
+      "credential": "root",
+      "summary": "Print a short-lived human sign-in URL.",
+      "args": [
+        {
+          "name": "open",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "login",
+          "method": "POST",
+          "route": "/v1/browser-login",
+          "query": {},
+          "body_fixture": "requests/browser_login.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/browser_login.json"
+        }
+      ],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": "link",
+      "go_name": "link",
+      "aliases": [],
+      "owner_task": "T4.3",
+      "credential": "root",
+      "summary": "Link this installation to a human account.",
+      "args": [
+        {
+          "name": "handle",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": null
+        },
+        {
+          "name": "no-wait",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [
+        {
+          "case": "state",
+          "method": "GET",
+          "route": "/v1/installations/link",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/link_pending.json"
+        },
+        {
+          "case": "start",
+          "method": "POST",
+          "route": "/v1/installations/link",
+          "query": {},
+          "body_fixture": "requests/link.json",
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": false,
+          "response_fixture": "responses/link_started.json"
+        },
+        {
+          "case": "approved",
+          "method": "GET",
+          "route": "/v1/installations/link",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/link_approved.json"
+        }
+      ],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": "feedback",
+      "go_name": "feedback",
+      "aliases": [],
+      "owner_task": "T2.11",
+      "credential": "none",
+      "summary": "Inspect and control local feedback capture and sharing policy.",
+      "args": [
+        {
+          "name": "action",
+          "kind": "positional",
+          "type": "string",
+          "required": false,
+          "default": "show"
+        }
+      ],
+      "requests": [],
+      "stdout": "json",
+      "errors": [
+        {
+          "case": "bad_action",
+          "stderr": "Use show, set, revoke, preview or clear.",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "python_name": "help-improve",
+      "go_name": "help-improve",
+      "aliases": [],
+      "owner_task": "T2.11",
+      "credential": "existing-profile",
+      "summary": "Report friction or verify a shipped fix, gated on feedback policy.",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "json",
+          "kind": "flag",
+          "type": "json",
+          "required": false,
+          "default": "{}"
+        }
+      ],
+      "requests": [
+        {
+          "case": "capability",
+          "method": "GET",
+          "route": "/v1/reliability",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": null,
+          "retry_safe": true,
+          "response_fixture": "responses/reliability.json"
+        },
+        {
+          "case": "report",
+          "method": "POST",
+          "route": "/v1/improvements",
+          "query": {},
+          "body_fixture": "requests/improvement.json",
+          "idempotency_key": "generated",
+          "capability": "improvements",
+          "retry_safe": true,
+          "response_fixture": "responses/improvement.json"
+        },
+        {
+          "case": "status",
+          "method": "GET",
+          "route": "/v1/improvements/00000000-0000-4000-8000-000000000061",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "improvements",
+          "retry_safe": true,
+          "response_fixture": "responses/improvement_status.json"
+        },
+        {
+          "case": "withdraw",
+          "method": "DELETE",
+          "route": "/v1/improvements/00000000-0000-4000-8000-000000000061",
+          "query": {},
+          "body_fixture": null,
+          "idempotency_key": "none",
+          "capability": "improvements",
+          "retry_safe": false,
+          "response_fixture": "responses/improvement_withdrawn.json"
+        },
+        {
+          "case": "verify",
+          "method": "POST",
+          "route": "/v1/improvements/00000000-0000-4000-8000-000000000061/verify",
+          "query": {},
+          "body_fixture": "requests/improvement_verify.json",
+          "idempotency_key": "generated",
+          "capability": "improvement_verification",
+          "retry_safe": true,
+          "response_fixture": "responses/improvement_verify.json"
+        }
+      ],
+      "stdout": "json",
+      "errors": []
+    },
+    {
+      "python_name": "rollback",
+      "go_name": "rollback",
+      "aliases": [],
+      "owner_task": "T4.6",
+      "credential": "none",
+      "summary": "Restore an installation backup.",
+      "args": [
+        {
+          "name": "backup_id",
+          "kind": "positional",
+          "type": "string",
+          "required": true,
+          "default": null
+        }
+      ],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": "integrations",
+      "go_name": "integrations",
+      "aliases": [],
+      "owner_task": "T4.6",
+      "credential": "none",
+      "summary": "Configure or inspect coding-tool integrations.",
+      "args": [
+        {
+          "name": "action",
+          "kind": "positional",
+          "type": "string",
+          "required": false,
+          "default": "status"
+        }
+      ],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": "migrate",
+      "go_name": "migrate",
+      "aliases": [],
+      "owner_task": "T4.9",
+      "credential": "none",
+      "summary": "Go meaning: migrate a Python-client installation to this binary. The Python meaning (legacy origin migration) is dropped.",
+      "args": [
+        {
+          "name": "dry-run",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": "mcp",
+      "go_name": "mcp",
+      "aliases": [],
+      "owner_task": "T3.2",
+      "credential": "profile",
+      "summary": "Serve the MCP tools over stdio (see tools.json).",
+      "args": [
+        {
+          "name": "profile",
+          "kind": "flag",
+          "type": "string",
+          "required": false,
+          "default": "terminal"
+        },
+        {
+          "name": "project-profile",
+          "kind": "flag",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ],
+      "requests": [],
+      "stdout": "none",
+      "errors": []
+    },
+    {
+      "python_name": null,
+      "go_name": "version",
+      "aliases": [],
+      "owner_task": "T2.6",
+      "credential": "none",
+      "summary": "Print version information.",
+      "args": [],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": null,
+      "go_name": "help",
+      "aliases": [],
+      "owner_task": "T2.6",
+      "credential": "none",
+      "summary": "Print usage.",
+      "args": [],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": null,
+      "go_name": "hook",
+      "aliases": [],
+      "owner_task": "T4.2",
+      "credential": "none",
+      "summary": "Harness hooks, for example session-start.",
+      "args": [],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": null,
+      "go_name": "update",
+      "aliases": [],
+      "owner_task": "T6.3",
+      "credential": "none",
+      "summary": "Update the binary or print the package-manager command.",
+      "args": [],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    },
+    {
+      "python_name": null,
+      "go_name": "uninstall",
+      "aliases": [],
+      "owner_task": "T4.8",
+      "credential": "none",
+      "summary": "Remove ajent-owned integration entries.",
+      "args": [],
+      "requests": [],
+      "stdout": "text",
+      "errors": []
+    }
+  ]
+}

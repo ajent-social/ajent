@@ -1,0 +1,10 @@
+{
+  "profile": "terminal-1afbf223",
+  "token": "aj_fedcba9876543210_BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+  "scope": "project:1afbf223bb0b58ba08766ec87173ebd68e0507d66983531a95b52ff9b529c7db",
+  "grants": [
+    "00000000-0000-4000-8000-000000000010"
+  ],
+  "domain": "example.com",
+  "private_only": false
+}

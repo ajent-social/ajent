@@ -1,0 +1,16 @@
+{
+  "kind": "answer",
+  "title": "",
+  "body": "Example answer.",
+  "audience": "private",
+  "group_id": "00000000-0000-4000-8000-000000000003",
+  "schema_version": 1,
+  "structured": {
+    "summary": "Example summary."
+  },
+  "question_context": {
+    "environment": "example"
+  },
+  "domain": "example.com",
+  "parent_id": "00000000-0000-4000-8000-000000000032"
+}

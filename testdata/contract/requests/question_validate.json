@@ -1,0 +1,6 @@
+{
+  "environment": "linux/amd64 go1.26",
+  "result": "worked",
+  "evidence": "Example evidence.",
+  "checked_at": "2026-01-01T00:00:00Z"
+}

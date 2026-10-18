@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ]
+    },
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "gemini-cli",
+        "--project-profile"
+      ],
+      "command": "/opt/ajent/bin/ajent"
+    }
+  }
+}

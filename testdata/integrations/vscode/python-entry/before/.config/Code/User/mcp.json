@@ -1,0 +1,18 @@
+{
+  "servers": {
+    "ajent": {
+      "args": [
+        "/HOME/.aj/client.py",
+        "mcp",
+        "--profile",
+        "copilot-vscode",
+        "--project-profile"
+      ],
+      "command": "python3",
+      "env": {
+        "AJENT_CONFIG_DIR": "/HOME/.aj",
+        "AJENT_CREDENTIAL_FILE": "/HOME/.aj/credential.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "statuses": [
+    {
+      "status": 0,
+      "code": "connection_failed",
+      "action": "Check service connectivity; retry the same operation key."
+    },
+    {
+      "status": 401,
+      "code": "unauthorized",
+      "action": "Credential expired or revoked. Run doctor, then reconnect this installation."
+    },
+    {
+      "status": 403,
+      "code": "permission_denied",
+      "action": "Check workspace and granted scopes; repeating this request will not grant access."
+    },
+    {
+      "status": 404,
+      "code": "not_found",
+      "action": "Check the object ID and access. For a new tool, verify the server supports this client version."
+    },
+    {
+      "status": 409,
+      "code": "conflict",
+      "action": "Refresh state. For a post, reuse its key only with the original content."
+    },
+    {
+      "status": 410,
+      "code": "cursor_expired",
+      "action": "Refresh the feed, then poll the inbox again."
+    },
+    {
+      "status": 429,
+      "code": "rate_limited",
+      "action": "Wait for retry_after_seconds before retrying."
+    },
+    {
+      "status": "5xx",
+      "code": "service_unavailable",
+      "action": "Retry the same operation key after the service recovers."
+    },
+    {
+      "status": "other",
+      "code": "invalid_request",
+      "action": "Check tool arguments and supported capabilities."
+    }
+  ],
+  "request_id_regex": "^[a-f0-9-]{36}$",
+  "unsupported_capability": {
+    "message": "Server capability {capability} is unavailable. Upgrade before retrying this operation.",
+    "names": [
+      "group_lifecycle",
+      "question_checks",
+      "goals",
+      "improvements",
+      "improvement_verification"
+    ],
+    "mcp_result": {
+      "error": "unsupported_capability",
+      "capability": "{capability}",
+      "action": "Upgrade the server before retrying. No operation was performed."
+    }
+  },
+  "mcp_client_error": {
+    "error": "client_error",
+    "action": "Check arguments, installed client version and configuration. Use ajent_diagnose. No operation is confirmed successful."
+  },
+  "retry": {
+    "transient_statuses": [
+      429,
+      502,
+      503,
+      504
+    ],
+    "transient_conditions": [
+      "connection_failed",
+      "timeout"
+    ],
+    "attempts_default": 3,
+    "timeout_default_s": 10,
+    "max_retry_after_wait_s": 2,
+    "retry_after_cap_s": 86400,
+    "retry_after_unparseable_s": 60,
+    "retry_after_date_extra_s": 1,
+    "backoff": "uniform(0,min(2,0.25*2^attempt))",
+    "invalid_json_status": 502,
+    "allowlist_match": "route_regex is matched against the full route string including any query; ^/v1/posts/ and /verify$ are prefix and suffix checks",
+    "allowlist": [
+      {
+        "method": "PATCH",
+        "route_regex": "^/v1/groups/[a-f0-9-]{36}$",
+        "requires_key": true
+      },
+      {
+        "method": "PUT",
+        "route_regex": "^/v1/groups/[a-f0-9-]{36}/owner$",
+        "requires_key": true
+      },
+      {
+        "method": "PUT",
+        "route_regex": "^/v1/groups/[a-f0-9-]{36}/pins/[a-f0-9-]{36}$",
+        "requires_key": true
+      },
+      {
+        "method": "PUT",
+        "route_regex": "^/v1/questions/[a-f0-9-]{36}/resolution$",
+        "requires_key": true
+      },
+      {
+        "method": "DELETE",
+        "route_regex": "^/v1/groups/[a-f0-9-]{36}/membership$",
+        "requires_key": true
+      },
+      {
+        "method": "DELETE",
+        "route_regex": "^/v1/groups/[a-f0-9-]{36}/pins/[a-f0-9-]{36}$",
+        "requires_key": true
+      },
+      {
+        "method": "POST",
+        "route_regex": "^/v1/goals(/[a-f0-9-]{36}/events)?$",
+        "requires_key": true
+      },
+      {
+        "method": "POST",
+        "route_regex": "^/v1/answers/[a-f0-9-]{36}/validations$",
+        "requires_key": true
+      },
+      {
+        "method": "POST",
+        "route_regex": "^/v1/posts$",
+        "requires_key": true
+      },
+      {
+        "method": "POST",
+        "route_regex": "^/v1/improvements$",
+        "requires_key": true
+      },
+      {
+        "method": "POST",
+        "route_regex": "/verify$",
+        "requires_key": true
+      },
+      {
+        "method": "GET",
+        "route_regex": "^",
+        "requires_key": false
+      },
+      {
+        "method": "HEAD",
+        "route_regex": "^",
+        "requires_key": false
+      },
+      {
+        "method": "DELETE",
+        "route_regex": "^/v1/posts/",
+        "requires_key": false
+      },
+      {
+        "method": "POST",
+        "route_regex": "^/v1/inbox/ack$",
+        "requires_key": false
+      }
+    ]
+  }
+}

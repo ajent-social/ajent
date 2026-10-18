@@ -1,0 +1,168 @@
+{
+  "items": [
+    {
+      "seq": 11,
+      "id": "00000000-0000-4000-8000-000000000311",
+      "kind": "finding",
+      "title": "Inbox item 11",
+      "preview": "Preview text for inbox item 11.",
+      "created_at": "2026-01-01T00:11:00Z"
+    },
+    {
+      "seq": 12,
+      "id": "00000000-0000-4000-8000-000000000312",
+      "kind": "finding",
+      "title": "Inbox item 12",
+      "preview": "Preview text for inbox item 12.",
+      "created_at": "2026-01-01T00:12:00Z"
+    },
+    {
+      "seq": 13,
+      "id": "00000000-0000-4000-8000-000000000313",
+      "kind": "finding",
+      "title": "Inbox item 13",
+      "preview": "Preview text for inbox item 13.",
+      "created_at": "2026-01-01T00:13:00Z"
+    },
+    {
+      "seq": 14,
+      "id": "00000000-0000-4000-8000-000000000314",
+      "kind": "finding",
+      "title": "Inbox item 14",
+      "preview": "Preview text for inbox item 14.",
+      "created_at": "2026-01-01T00:14:00Z"
+    },
+    {
+      "seq": 15,
+      "id": "00000000-0000-4000-8000-000000000315",
+      "kind": "finding",
+      "title": "Inbox item 15",
+      "preview": "Preview text for inbox item 15.",
+      "created_at": "2026-01-01T00:15:00Z"
+    },
+    {
+      "seq": 16,
+      "id": "00000000-0000-4000-8000-000000000316",
+      "kind": "finding",
+      "title": "Inbox item 16",
+      "preview": "Preview text for inbox item 16.",
+      "created_at": "2026-01-01T00:16:00Z"
+    },
+    {
+      "seq": 17,
+      "id": "00000000-0000-4000-8000-000000000317",
+      "kind": "finding",
+      "title": "Inbox item 17",
+      "preview": "Preview text for inbox item 17.",
+      "created_at": "2026-01-01T00:17:00Z"
+    },
+    {
+      "seq": 18,
+      "id": "00000000-0000-4000-8000-000000000318",
+      "kind": "finding",
+      "title": "Inbox item 18",
+      "preview": "Preview text for inbox item 18.",
+      "created_at": "2026-01-01T00:18:00Z"
+    },
+    {
+      "seq": 19,
+      "id": "00000000-0000-4000-8000-000000000319",
+      "kind": "finding",
+      "title": "Inbox item 19",
+      "preview": "Preview text for inbox item 19.",
+      "created_at": "2026-01-01T00:19:00Z"
+    },
+    {
+      "seq": 20,
+      "id": "00000000-0000-4000-8000-000000000320",
+      "kind": "finding",
+      "title": "Inbox item 20",
+      "preview": "Preview text for inbox item 20.",
+      "created_at": "2026-01-01T00:20:00Z"
+    },
+    {
+      "seq": 21,
+      "id": "00000000-0000-4000-8000-000000000321",
+      "kind": "finding",
+      "title": "Inbox item 21",
+      "preview": "Preview text for inbox item 21.",
+      "created_at": "2026-01-01T00:21:00Z"
+    },
+    {
+      "seq": 22,
+      "id": "00000000-0000-4000-8000-000000000322",
+      "kind": "finding",
+      "title": "Inbox item 22",
+      "preview": "Preview text for inbox item 22.",
+      "created_at": "2026-01-01T00:22:00Z"
+    },
+    {
+      "seq": 23,
+      "id": "00000000-0000-4000-8000-000000000323",
+      "kind": "finding",
+      "title": "Inbox item 23",
+      "preview": "Preview text for inbox item 23.",
+      "created_at": "2026-01-01T00:23:00Z"
+    },
+    {
+      "seq": 24,
+      "id": "00000000-0000-4000-8000-000000000324",
+      "kind": "finding",
+      "title": "Inbox item 24",
+      "preview": "Preview text for inbox item 24.",
+      "created_at": "2026-01-01T00:24:00Z"
+    },
+    {
+      "seq": 25,
+      "id": "00000000-0000-4000-8000-000000000325",
+      "kind": "finding",
+      "title": "Inbox item 25",
+      "preview": "Preview text for inbox item 25.",
+      "created_at": "2026-01-01T00:25:00Z"
+    },
+    {
+      "seq": 26,
+      "id": "00000000-0000-4000-8000-000000000326",
+      "kind": "finding",
+      "title": "Inbox item 26",
+      "preview": "Preview text for inbox item 26.",
+      "created_at": "2026-01-01T00:26:00Z"
+    },
+    {
+      "seq": 27,
+      "id": "00000000-0000-4000-8000-000000000327",
+      "kind": "finding",
+      "title": "Inbox item 27",
+      "preview": "Preview text for inbox item 27.",
+      "created_at": "2026-01-01T00:27:00Z"
+    },
+    {
+      "seq": 28,
+      "id": "00000000-0000-4000-8000-000000000328",
+      "kind": "finding",
+      "title": "Inbox item 28",
+      "preview": "Preview text for inbox item 28.",
+      "created_at": "2026-01-01T00:28:00Z"
+    },
+    {
+      "seq": 29,
+      "id": "00000000-0000-4000-8000-000000000329",
+      "kind": "finding",
+      "title": "Inbox item 29",
+      "preview": "Preview text for inbox item 29.",
+      "created_at": "2026-01-01T00:29:00Z"
+    },
+    {
+      "seq": 30,
+      "id": "00000000-0000-4000-8000-000000000330",
+      "kind": "finding",
+      "title": "Inbox item 30",
+      "preview": "Preview text for inbox item 30.",
+      "created_at": "2026-01-01T00:30:00Z"
+    }
+  ],
+  "acknowledged_through": 10,
+  "has_more": false,
+  "history_gap": false,
+  "cursor": 30
+}

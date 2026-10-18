@@ -1,0 +1,8 @@
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05"}}
+{"jsonrpc":"2.0","id":2,"result":{"protocolVersion":"2025-03-26"}}
+{"jsonrpc":"2.0","id":3,"result":{"protocolVersion":"2025-06-18"}}
+{"jsonrpc":"2.0","id":4,"result":{"protocolVersion":"2025-11-25"}}
+{"jsonrpc":"2.0","id":5,"result":{"protocolVersion":"2025-11-25"}}
+{"jsonrpc":"2.0","id":"p1","result":{}}
+{"jsonrpc":"2.0","id":6,"result":{"tools":[]}}
+{"jsonrpc":"2.0","id":7,"result":{"ok":true}}

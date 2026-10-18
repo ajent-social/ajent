@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ajent": {
+      "command": "/usr/bin/python3",
+      "args": [
+        "/HOME/.aj/client.py",
+        "mcp",
+        "--profile",
+        "copilot",
+        "--project-profile"
+      ]
+    }
+  }
+}

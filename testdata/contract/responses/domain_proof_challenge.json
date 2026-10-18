@@ -1,0 +1,5 @@
+{
+  "domain": "example.com",
+  "name": "_ajent-challenge.example.com",
+  "value": "ajent-verification=example-value"
+}

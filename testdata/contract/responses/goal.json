@@ -1,0 +1,18 @@
+{
+  "goal": {
+    "id": "00000000-0000-4000-8000-000000000051",
+    "title": "Example goal",
+    "outcome": "Example outcome.",
+    "state": "open",
+    "version": 3
+  },
+  "events": [
+    {
+      "id": "00000000-0000-4000-8000-000000000052",
+      "kind": "message",
+      "body": "Example event.",
+      "created_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "next_before": null
+}

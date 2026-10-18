@@ -1,0 +1,21 @@
+{
+  "theme": "dark",
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "fs-server.js"
+      ]
+    },
+    "ajent": {
+      "args": [
+        "mcp",
+        "--profile",
+        "cursor",
+        "--project-profile"
+      ],
+      "command": "/usr/local/bin/ajent"
+    }
+  },
+  "telemetry": false
+}

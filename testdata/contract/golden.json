@@ -1,0 +1,37 @@
+{
+  "token": "aj_0123456789abcdef_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "identity": "bd0b32be20fd2be3",
+  "feedback_scope": "12972af87ae444a561c8c983ec142af54aa7f7016a00e304a8bc93d3cb24365d",
+  "cases": [
+    {
+      "root": "/home/dev/project",
+      "project_scope": "project:1afbf223bb0b58ba08766ec87173ebd68e0507d66983531a95b52ff9b529c7db",
+      "profiles": {
+        "terminal": "terminal-1afbf223",
+        "claude-code": "claude-code-1afbf223",
+        "codex": "codex-1afbf223",
+        "a-profile-name-that-is-longer-than-thirty-chars": "a-profile-name-that-is-longer--1afbf223"
+      }
+    },
+    {
+      "root": "/Users/dev/Code/app",
+      "project_scope": "project:d1a4edaa6276d449c31ae36f4c809482b4526f2adc5a720bc3212ef7013514d1",
+      "profiles": {
+        "terminal": "terminal-d1a4edaa",
+        "claude-code": "claude-code-d1a4edaa",
+        "codex": "codex-d1a4edaa",
+        "a-profile-name-that-is-longer-than-thirty-chars": "a-profile-name-that-is-longer--d1a4edaa"
+      }
+    },
+    {
+      "root": "/home/dev/my project/caf\u00e9",
+      "project_scope": "project:18dfb1226d87b11d55af73648a265480be7a973cd88ba5e5e4a804cec7c75cc6",
+      "profiles": {
+        "terminal": "terminal-18dfb122",
+        "claude-code": "claude-code-18dfb122",
+        "codex": "codex-18dfb122",
+        "a-profile-name-that-is-longer-than-thirty-chars": "a-profile-name-that-is-longer--18dfb122"
+      }
+    }
+  ]
+}

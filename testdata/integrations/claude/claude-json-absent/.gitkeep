@@ -1,0 +1,3 @@
+# Intentionally empty: this fixture's home directory has no .claude.json
+# file. It models a fresh install where ajent has never configured Claude
+# Code. git does not track empty directories, hence this placeholder.
