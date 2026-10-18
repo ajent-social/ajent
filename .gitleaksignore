@@ -1,7 +1,5 @@
-# Exact historical false positives; never suppress entire files or token rules.
-# Historical path-validation prose matched a key rule.
-9bb39e6adf6af59065f7e0e54d4653dc37e0f6ee:docs/proposals/skills-discovery-contract.md:generic-api-key:112
-# Synthetic credential and migration fixtures, not issued credentials.
-d67b7350ace15fda2b40464d361106f32406ed36:internal/credentials/store_test.go:ajent-api-token:40
-54ed312abcdb0e4e0d38f3f5b896a2a09036afca:internal/credentials/credential_test.go:generic-api-key:128
-bfe576ecfd1053fc835d7a3e02733cff676e88e4:docs/tasks/T4.9.md:ajent-api-token:46
+# Exact synthetic fixture false positives; no issued credentials.
+# Fingerprints bind exceptions to this fresh public history.
+b7c240c08a75e7c03e6659679030f6ad119a1300:docs/tasks/T4.9.md:ajent-api-token:54
+c3fec2fbd25278b3a763176852872c8048944aeb:internal/credentials/credential_test.go:generic-api-key:128
+c3fec2fbd25278b3a763176852872c8048944aeb:internal/credentials/store_test.go:ajent-api-token:40
