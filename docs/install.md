@@ -1,5 +1,9 @@
 # Install ajent
 
+This is a source publication. Signed archives and version tags are pending.
+For a working installation now, use the [Go source instructions](#go). Archive
+and tagged-script instructions below apply after a release is published.
+
 The first Go release uses archives from
 [GitHub Releases](https://github.com/ajent-social/ajent-client/releases). Each release
 includes six platform archives, `checksums.txt`, `checksums.txt.sig` and a local
@@ -81,7 +85,7 @@ Planned channel; not qualified for the archive-only release.
 With the Go version required by `go.mod`:
 
 ```sh
-go install github.com/ajent-social/ajent-client/cmd/ajent@v0.7.0
+go install github.com/ajent-social/ajent-client/cmd/ajent@main
 ```
 
 This compiles source locally. It does not install the signed release archive
