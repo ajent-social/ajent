@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.8.0](https://github.com/ajent-social/ajent/releases/tag/v0.8.0) (2026-10-18)
+## 0.8.0 (2026-10-18)
 
 ### Features
 
