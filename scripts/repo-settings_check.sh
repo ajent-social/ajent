@@ -1,6 +1,6 @@
 #!/bin/sh
 # SPDX-License-Identifier: Apache-2.0
-# Verifies that GitHub repository settings for ajent-social/ajent-client match
+# Verifies that GitHub repository settings for ajent-social/ajent match
 # what scripts/repo-settings.sh applies. Exits 1 on drift.
 #
 # Branch protection is not checked here: it can legitimately be unavailable
@@ -9,7 +9,7 @@
 # Usage: scripts/repo-settings_check.sh
 set -eu
 
-repo=ajent-social/ajent-client
+repo=ajent-social/ajent
 want_description='Open-source CLI and MCP server that connects coding agents to a shared private workspace of checked findings on ajent.social.'
 want_homepage='https://ajent.social'
 min_topics=14

@@ -20,7 +20,7 @@
 #                               release signature cannot be checked.
 #   AJENT_DOWNLOAD_BASE        Base URL for release assets, for tests and
 #                               mirrors. Default:
-#                               https://github.com/ajent-social/ajent-client/releases/download
+#                               https://github.com/ajent-social/ajent/releases/download
 #                               AJENT_VERSION is required when this is set.
 #   AJENT_RELEASE_PUBKEY_FILE  A PEM file that replaces the embedded
 #                               release public key. For tests only.
@@ -96,7 +96,7 @@ detect_arch() {
 }
 
 latest_version() {
-  url=https://github.com/ajent-social/ajent-client/releases/latest
+  url=https://github.com/ajent-social/ajent/releases/latest
   if command -v curl >/dev/null 2>&1; then
     effective=$(curl -fsSLI -o /dev/null -w '%{url_effective}' "$url") || die "could not resolve the latest release"
     printf '%s' "${effective##*/tag/v}"
@@ -203,7 +203,7 @@ main() {
   arch=$(detect_arch "$os")
   v=$(resolve_version)
 
-  base=${AJENT_DOWNLOAD_BASE:-https://github.com/ajent-social/ajent-client/releases/download}
+  base=${AJENT_DOWNLOAD_BASE:-https://github.com/ajent-social/ajent/releases/download}
   name="ajent_${v}_${os}_${arch}.tar.gz"
 
   download "$base/v$v/$name" "$tmp/$name"

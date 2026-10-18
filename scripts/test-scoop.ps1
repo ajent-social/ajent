@@ -56,7 +56,7 @@ try {
 
     # 2. Rewrite the GitHub release download prefix to the local mirror.
     $content = Get-Content -LiteralPath $Manifest -Raw
-    $content = $content -replace 'https://github\.com/ajent-social/ajent-client/releases/download/[^/]+/', 'http://127.0.0.1:8765/'
+    $content = $content -replace 'https://github\.com/ajent-social/ajent/releases/download/[^/]+/', 'http://127.0.0.1:8765/'
 
     if ($CorruptHash) {
         Write-Output 'CorruptHash: flipping the amd64 hash for the genuine-red check'

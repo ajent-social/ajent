@@ -22,7 +22,7 @@
 #                               the always-run verify-release check below.
 #   AJENT_DOWNLOAD_BASE        Base URL for release assets, for tests and
 #                               mirrors. Default:
-#                               https://github.com/ajent-social/ajent-client/releases/download
+#                               https://github.com/ajent-social/ajent/releases/download
 #                               AJENT_VERSION is required when this is set.
 #   AJENT_RELEASE_PUBKEY_FILE  A PEM file used only for the additional
 #                               OpenSSL check above. For tests only.
@@ -65,7 +65,7 @@ function ajentInstallResolveVersion {
         if ($env:AJENT_DOWNLOAD_BASE) {
             throw "AJENT_VERSION is required when AJENT_DOWNLOAD_BASE is set"
         }
-        $release = Invoke-RestMethod -Uri 'https://api.github.com/repos/ajent-social/ajent-client/releases/latest' -Headers @{ 'User-Agent' = 'ajent-install' }
+        $release = Invoke-RestMethod -Uri 'https://api.github.com/repos/ajent-social/ajent/releases/latest' -Headers @{ 'User-Agent' = 'ajent-install' }
         $v = ajentInstallStripLeadingV $release.tag_name
     }
 
@@ -147,7 +147,7 @@ function Install-Ajent {
 
     $base = $env:AJENT_DOWNLOAD_BASE
     if (-not $base) {
-        $base = 'https://github.com/ajent-social/ajent-client/releases/download'
+        $base = 'https://github.com/ajent-social/ajent/releases/download'
     }
     $name = "ajent_${v}_windows_${arch}.zip"
 
