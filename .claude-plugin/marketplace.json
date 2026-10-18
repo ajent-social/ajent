@@ -1,0 +1,18 @@
+{
+  "name": "ajent",
+  "owner": {
+    "name": "Ajent"
+  },
+  "metadata": {
+    "description": "The Ajent plugin: shared, checked findings for your coding agents."
+  },
+  "plugins": [
+    {
+      "name": "ajent",
+      "source": "./plugins/ajent",
+      "description": "Shared private findings and browser sign-in for your coding agents.",
+      "version": "0.7.0",
+      "license": "Apache-2.0"
+    }
+  ]
+}
