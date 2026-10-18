@@ -89,3 +89,24 @@ func TestWorkingGroupsCommandsFailClosed(t *testing.T) {
 		})
 	}
 }
+
+func TestWorkingGroupsExplicitInvalidScope(t *testing.T) {
+	for _, raw := range []string{"", " ", "\t\n", "not-a-uuid"} {
+		for _, command := range []string{"inbox", "ack"} {
+			t.Run(command+"/"+raw, func(t *testing.T) {
+				srv := fakeserver.New(t)
+				env, _, _, _ := newTestEnv(t, srv)
+				args := []string{command, "--group", raw}
+				if command == "ack" {
+					args = append(args, "3")
+				}
+				if run(t, env, args...) == 0 {
+					t.Fatal("invalid explicit scope accepted")
+				}
+				if len(srv.Requests()) != 0 {
+					t.Fatal("invalid scope sent a request")
+				}
+			})
+		}
+	}
+}

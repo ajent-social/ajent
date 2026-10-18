@@ -133,7 +133,13 @@ func runReadInbox(ctx context.Context, env *cli.Env, args []string) error {
 	}
 	route := "/v1/inbox"
 	raw := fs.Lookup("group").Value.String()
-	if raw != "" {
+	scoped := false
+	fs.Visit(func(f *flag.Flag) {
+		if f.Name == "group" {
+			scoped = true
+		}
+	})
+	if scoped {
 		id, err := api.CanonicalUUID(raw)
 		if err != nil {
 			return err
@@ -144,7 +150,7 @@ func runReadInbox(ctx context.Context, env *cli.Env, args []string) error {
 	if err != nil {
 		return err
 	}
-	if raw != "" {
+	if scoped {
 		if err := env.API.Require(ctx, cred, "working_groups"); err != nil {
 			return err
 		}
