@@ -59,7 +59,7 @@ func upgradeExeName(name string) string {
 	return name
 }
 
-// upgradeBuild builds github.com/ajent-social/ajent-client/cmd/ajent into
+// upgradeBuild builds github.com/ajent-social/ajent/cmd/ajent into
 // outPath, stamping it with version and pubB64 (the throwaway release
 // public key TestUpgrade generates for the whole run), so the built binary
 // trusts only that key (docs/tasks/T6.8.md step 2.2). It never inherits an
@@ -69,14 +69,14 @@ func upgradeBuild(t *testing.T, root, outPath, version, pubB64 string) {
 	t.Helper()
 
 	ldflags := fmt.Sprintf(
-		"-X github.com/ajent-social/ajent-client/internal/version.Version=%s -X github.com/ajent-social/ajent-client/internal/update.extraKeyB64=%s",
+		"-X github.com/ajent-social/ajent/internal/version.Version=%s -X github.com/ajent-social/ajent/internal/update.extraKeyB64=%s",
 		version, pubB64,
 	)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Minute)
 	defer cancel()
 
-	cmd := exec.CommandContext(ctx, "go", "build", "-o", outPath, "-ldflags", ldflags, "github.com/ajent-social/ajent-client/cmd/ajent")
+	cmd := exec.CommandContext(ctx, "go", "build", "-o", outPath, "-ldflags", ldflags, "github.com/ajent-social/ajent/cmd/ajent")
 	cmd.Dir = root
 	cmd.Env = os.Environ()
 	if out, err := cmd.CombinedOutput(); err != nil {

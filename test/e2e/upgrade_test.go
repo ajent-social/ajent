@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakerelease"
-	"github.com/ajent-social/ajent-client/internal/update"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/testutil/fakerelease"
+	"github.com/ajent-social/ajent/internal/update"
 )
 
 // upgradeInstallRecord is the subset of install.json (written by the
