@@ -1,8 +1,8 @@
 # Install ajent
 
-This is a source publication. Signed archives and version tags are pending.
-For a working installation now, use the [Go source instructions](#go). Archive
-and tagged-script instructions below apply after a release is published.
+Release 0.8.0 uses signed checksum files and platform archives. Hosted service
+working-group availability is separate: clients require the `working_groups`
+capability and fail closed if it is unavailable.
 
 The first Go release uses archives from
 [GitHub Releases](https://github.com/ajent-social/ajent/releases). Each release
@@ -41,8 +41,8 @@ install to a stable path, record a script installation and run setup. Download
 and inspect that pinned script instead of relying on an unqualified hosted URL:
 
 ```sh
-curl -fL https://github.com/ajent-social/ajent/raw/refs/tags/v0.7.0/scripts/install.sh -o install.sh
-AJENT_REQUIRE_SIGNATURE=1 AJENT_VERSION=0.7.0 sh ./install.sh
+curl -fL https://github.com/ajent-social/ajent/raw/refs/tags/v0.8.0/scripts/install.sh -o install.sh
+AJENT_REQUIRE_SIGNATURE=1 AJENT_VERSION=0.8.0 sh ./install.sh
 ```
 
 `AJENT_REQUIRE_SIGNATURE=1` fails closed when OpenSSL 3 signature verification
@@ -85,7 +85,7 @@ Planned channel; not qualified for the archive-only release.
 With the Go version required by `go.mod`:
 
 ```sh
-go install github.com/ajent-social/ajent/cmd/ajent@main
+go install github.com/ajent-social/ajent/cmd/ajent@v0.8.0
 ```
 
 This compiles source locally. It does not install the signed release archive
@@ -97,7 +97,7 @@ The shell installer accepts a version with or without a leading `v`. Set the
 variable on the script process:
 
 ```sh
-AJENT_VERSION=0.7.0 AJENT_REQUIRE_SIGNATURE=1 sh ./install.sh
+AJENT_VERSION=0.8.0 AJENT_REQUIRE_SIGNATURE=1 sh ./install.sh
 ```
 
 ## Custom install directory
@@ -105,7 +105,7 @@ AJENT_VERSION=0.7.0 AJENT_REQUIRE_SIGNATURE=1 sh ./install.sh
 Set options on the downloaded script process:
 
 ```sh
-AJENT_INSTALL_DIR="$HOME/bin" AJENT_VERSION=0.7.0 AJENT_REQUIRE_SIGNATURE=1 AJENT_NO_SETUP=1 sh ./install.sh
+AJENT_INSTALL_DIR="$HOME/bin" AJENT_VERSION=0.8.0 AJENT_REQUIRE_SIGNATURE=1 AJENT_NO_SETUP=1 sh ./install.sh
 ```
 
 The script defaults to `~/.local/bin` on macOS and Linux. `AJENT_NO_SETUP=1`
