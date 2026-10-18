@@ -29,10 +29,10 @@ func TestWorkingGroupsCommands(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			srv := fakeserver.New(t)
 			env, _, stderr, _ := newTestEnv(t, srv)
-			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, r *http.Request) {
+			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) {
 				_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": []string{"working_groups"}})
 			})
-			srv.Handle(tc.method, tc.path, func(w http.ResponseWriter, r *http.Request) {
+			srv.Handle(tc.method, tc.path, func(w http.ResponseWriter, _ *http.Request) {
 				_ = json.NewEncoder(w).Encode(map[string]any{"ok": true})
 			})
 			if code := run(t, env, tc.args...); code != 0 {
@@ -82,7 +82,7 @@ func TestWorkingGroupsCommandsFailClosed(t *testing.T) {
 		t.Run(args[0], func(t *testing.T) {
 			srv := fakeserver.New(t)
 			env, _, _, _ := newTestEnv(t, srv)
-			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, r *http.Request) { _, _ = w.Write([]byte(`{"capabilities":[]}`)) })
+			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) { _, _ = w.Write([]byte(`{"capabilities":[]}`)) })
 			if run(t, env, args...) == 0 {
 				t.Fatal("unsupported scoped operation succeeded")
 			}
