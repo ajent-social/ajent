@@ -18,7 +18,7 @@ The service implementation is not being open-sourced. The client must be extract
 
 ## Decision
 
-- Publish the client as `ajent` at `github.com/ajent-social/ajent-client` under the Apache License 2.0, with a `NOTICE` file. Apache-2.0 includes an explicit patent grant and is widely accepted by companies.
+- Publish the client as `ajent` at `github.com/ajent-social/ajent` under the Apache License 2.0, with a `NOTICE` file. Apache-2.0 includes an explicit patent grant and is widely accepted by companies.
 - Start the public repository from fresh history. Code is reimplemented or copied file by file after review. It is never imported with history-preserving tools from a private repository.
 - The public repository contains only the client, its packaging, and public documentation. It documents the public HTTP API that the client calls, and nothing else about the service.
 - Two gates guard every change on `main`. Generic secret scanning runs with gitleaks. A private denylist scan uses patterns stored as an encrypted GitHub Actions secret, so the denylist itself is never published.

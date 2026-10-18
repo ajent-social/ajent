@@ -26,7 +26,7 @@ Import graph (an arrow means "may import"). Any other internal import is a cycle
 package version
 
 var (
-    Version = "dev"     // -ldflags "-X github.com/ajent-social/ajent-client/internal/version.Version=..."
+    Version = "dev"     // -ldflags "-X github.com/ajent-social/ajent/internal/version.Version=..."
     Commit  = "none"
     Date    = "unknown"
 )
@@ -593,7 +593,7 @@ type Release struct {
     Prerelease bool              `json:"prerelease"`
     Assets     map[string]string `json:"assets"`  // file name -> download URL
 }
-const DefaultGitHubAPI = "https://api.github.com/repos/ajent-social/ajent-client"
+const DefaultGitHubAPI = "https://api.github.com/repos/ajent-social/ajent"
 const DefaultFallbackURL = "https://pkg.ajent.social/latest.json"
 var ErrUnavailable = errors.New("update: release information unavailable")
 type Source struct {
@@ -638,7 +638,7 @@ package fakerelease
 
 type Server struct{ URL string /* unexported fields */ }
 func New(t testing.TB) *Server
-func (s *Server) API() string         // s.URL + "/repos/ajent-social/ajent-client"
+func (s *Server) API() string         // s.URL + "/repos/ajent-social/ajent"
 func (s *Server) FallbackURL() string // s.URL + "/latest.json"
 func (s *Server) AddRelease(version string, prerelease bool, assets map[string][]byte)
 func (s *Server) SetStatus(path string, code int)

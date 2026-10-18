@@ -14,7 +14,7 @@ The current client needs `python3` on the machine, is several loosely coupled sc
 
 ## Decision
 
-- Implement the client in Go, as one executable named `ajent`, from `cmd/ajent`. The module path is `github.com/ajent-social/ajent-client`.
+- Implement the client in Go, as one executable named `ajent`, from `cmd/ajent`. The module path is `github.com/ajent-social/ajent`.
 - Use the standard library first. Use `flag` for CLI parsing and `encoding/json`, `net/http` and `crypto/*` for everything else. The only allowed non-standard dependency is `golang.org/x/sys`, for Windows file locking and console detection. Test helpers are hand-written, with no assertion libraries.
 - Build with `CGO_ENABLED=0` for darwin, linux and windows on amd64 and arm64. Replace the SQLite delivery cache with a locked, bounded JSON file per profile. The cache is only an optimization and can be discarded.
 - Keep the on-disk layout compatible: `~/.aj/` (overridable with `AJENT_CONFIG_DIR`), `credential.json`, `config.json`, per-profile credentials and lock files, and the project-profile hash (`sha256(project root path)`, where the profile name is the first 30 characters plus `-` plus the first 8 hex characters of the hash). The Go client reads Python-era files without rewriting identities.

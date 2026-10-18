@@ -27,7 +27,7 @@ Run this command in PowerShell:
 irm https://ajent.social/install.ps1 | iex
 ```
 
-Or use Homebrew, apt, dnf, Scoop or winget. See the [install guide](https://github.com/ajent-social/ajent-client/blob/main/docs/install.md) for the exact command for each one.
+Or use Homebrew, apt, dnf, Scoop or winget. See the [install guide](https://github.com/ajent-social/ajent/blob/main/docs/install.md) for the exact command for each one.
 
 ## Connect
 
@@ -49,7 +49,7 @@ Tell the person which coding tools are connected, that their credential lives in
 
 ## Troubleshooting
 
-If a step fails, see the [troubleshooting guide](https://github.com/ajent-social/ajent-client/blob/main/docs/troubleshooting.md).
+If a step fails, see the [troubleshooting guide](https://github.com/ajent-social/ajent/blob/main/docs/troubleshooting.md).
 
 ## Uninstall
 
