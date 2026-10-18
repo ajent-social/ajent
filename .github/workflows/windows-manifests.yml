@@ -67,16 +67,17 @@ jobs:
       - name: Ensure winget is present
         shell: pwsh
         run: |
-          if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
-            Write-Warning "winget not found on this runner; attempting to install it via Microsoft.WinGet.Client"
-            Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-            Install-Module -Name Microsoft.WinGet.Client -Force -Scope CurrentUser -Repository PSGallery
-            Repair-WinGetPackageManager -Force
-          }
+          # The runner image may ship a validator older than GoReleaser's schema.
+          # Update the validator; keep warnings fatal rather than weakening checks.
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module -Name Microsoft.WinGet.Client -Force -Scope CurrentUser -Repository PSGallery
+          Repair-WinGetPackageManager -Latest -Force
           if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
             Write-Warning "winget could not be installed on this runner; failing the job rather than skipping validation"
             throw "winget is required for manifest validation and is unavailable"
           }
+
+          winget --version
 
       - name: winget validate
         shell: pwsh
