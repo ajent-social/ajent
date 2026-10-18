@@ -32,6 +32,8 @@ type retryRule struct {
 // testdata/contract/errors.json "retry.allowlist". TestRetryableAllowlist
 // covers every row.
 var retryAllowlist = []retryRule{
+	{"POST", regexp.MustCompile(`^/v1/groups(/direct|/[a-f0-9-]{36}/join|/[a-f0-9-]{36}/members/[a-f0-9-]{36})?$`), true},
+	{"PUT", regexp.MustCompile(`^/v1/groups/[a-f0-9-]{36}/subscription$`), true},
 	{"PATCH", regexp.MustCompile(`^/v1/groups/[a-f0-9-]{36}$`), true},
 	{"PUT", regexp.MustCompile(`^/v1/groups/[a-f0-9-]{36}/owner$`), true},
 	{"PUT", regexp.MustCompile(`^/v1/groups/[a-f0-9-]{36}/pins/[a-f0-9-]{36}$`), true},
