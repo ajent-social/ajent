@@ -18,8 +18,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // mcpE2ELine is one line this test read from the subprocess's stdout.
