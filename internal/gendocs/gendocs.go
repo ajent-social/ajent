@@ -14,8 +14,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/mcp"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/mcp"
 )
 
 // gendocsGeneratedComment marks both generated files as machine-written.

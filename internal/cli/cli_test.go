@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // reset clears the command registry. It exists only for tests: each test

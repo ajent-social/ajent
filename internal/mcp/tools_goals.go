@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/ajent-social/ajent-client/internal/api"
+	"github.com/ajent-social/ajent/internal/api"
 )
 
 func init() {

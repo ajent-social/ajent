@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // TestHelperProcess is not a real test: it is a no-op unless

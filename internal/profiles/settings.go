@@ -16,8 +16,8 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // Settings is the enrollment scope payload sent to POST /v1/fleet

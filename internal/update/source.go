@@ -14,12 +14,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // DefaultGitHubAPI is the GitHub REST API base for the ajent repository.
-const DefaultGitHubAPI = "https://api.github.com/repos/ajent-social/ajent-client"
+const DefaultGitHubAPI = "https://api.github.com/repos/ajent-social/ajent"
 
 // DefaultFallbackURL serves the same release information as
 // DefaultGitHubAPI's "latest release", for use when GitHub is unreachable

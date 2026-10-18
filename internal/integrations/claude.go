@@ -139,7 +139,7 @@ func (claudeWriter) Apply(ctx context.Context, p Params) (Result, error) {
 func claudeApplyMarketplace(ctx context.Context, result *Result) {
 	out, err := Run(ctx, "claude", "plugin", "marketplace", "list")
 	if err == nil && !claudeMarketplaceListed(out) {
-		_, err = Run(ctx, "claude", "plugin", "marketplace", "add", "ajent-social/ajent-client")
+		_, err = Run(ctx, "claude", "plugin", "marketplace", "add", "ajent-social/ajent")
 	}
 	if err != nil {
 		result.Detail += "; plugin marketplace not registered"

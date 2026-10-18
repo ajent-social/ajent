@@ -12,8 +12,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // defaultTimeout is used when Request.Timeout is zero.

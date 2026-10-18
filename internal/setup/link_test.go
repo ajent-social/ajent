@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 func TestLinkWrongProjectScope(t *testing.T) {

@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // noSleep is injected as Client.Sleep so retry tests run instantly.

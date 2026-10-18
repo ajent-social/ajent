@@ -160,7 +160,7 @@ func run(ctx context.Context, args []string, getenv func(string) string, call ru
 			bin += ".exe"
 		}
 		binary := filepath.Join(out, "."+parts[0]+"_"+parts[1]+"_"+bin)
-		pkg := "github.com/ajent-social/ajent-client/internal/version."
+		pkg := "github.com/ajent-social/ajent/internal/version."
 		flags := "-s -w -X " + pkg + "Version=" + o.version + " -X " + pkg + "Commit=" + o.sha + " -X " + pkg + "Date=" + date.UTC().Format(time.RFC3339)
 		buildEnv := append(append([]string{}, env...), "GOOS="+parts[0], "GOARCH="+parts[1], "CGO_ENABLED=0")
 		log, buildErr := call(ctx, "go", []string{"build", "-mod=readonly", "-trimpath", "-ldflags", flags, "-o", binary, "./cmd/ajent"}, work, buildEnv)

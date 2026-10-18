@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // feedbackTestClient returns an api.Client wired to store's Observer, with

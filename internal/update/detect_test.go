@@ -285,7 +285,7 @@ func TestUpgradeCommand(t *testing.T) {
 		{MethodRPM, "sudo dnf upgrade ajent"},
 		{MethodScoop, "scoop update ajent"},
 		{MethodWinget, "winget upgrade --id AjentSocial.Ajent --exact"},
-		{MethodGoInstall, "go install github.com/ajent-social/ajent-client/cmd/ajent@latest"},
+		{MethodGoInstall, "go install github.com/ajent-social/ajent/cmd/ajent@latest"},
 		{MethodScript, ""},
 		{MethodUnknown, ""},
 	}

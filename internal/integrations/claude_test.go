@@ -238,7 +238,7 @@ func TestClaudeAddWhenAbsent(t *testing.T) {
 	if addMarket == nil {
 		t.Fatalf("no plugin marketplace add call recorded; calls = %v", fake.calls)
 	}
-	if got, want := addMarket[len(addMarket)-1], "ajent-social/ajent-client"; got != want {
+	if got, want := addMarket[len(addMarket)-1], "ajent-social/ajent"; got != want {
 		t.Fatalf("marketplace add argument = %q, want %q", got, want)
 	}
 }

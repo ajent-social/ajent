@@ -16,8 +16,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakerelease"
-	"github.com/ajent-social/ajent-client/internal/update"
+	"github.com/ajent-social/ajent/internal/testutil/fakerelease"
+	"github.com/ajent-social/ajent/internal/update"
 )
 
 // recordingTransport wraps http.DefaultTransport, recording each request's

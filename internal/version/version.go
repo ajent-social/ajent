@@ -9,7 +9,7 @@ import "runtime"
 // Version, Commit and Date are set at build time with -ldflags, for
 // example:
 //
-//	-X github.com/ajent-social/ajent-client/internal/version.Version=1.2.3
+//	-X github.com/ajent-social/ajent/internal/version.Version=1.2.3
 //
 // Their zero values identify a development build.
 var (
