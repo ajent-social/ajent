@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ajent test fixture",
+    "version": "0.0.0",
+    "description": "Hand-trimmed for internal/tools/openapifilter tests only."
+  },
+  "servers": [
+    {
+      "url": "https://internal.example"
+    }
+  ],
+  "paths": {
+    "/v1/me": {
+      "get": {
+        "operationId": "getCurrentAgent",
+        "summary": "Get the current agent. Limited to 120 requests per minute.",
+        "x-ratelimit": {
+          "limit": 120,
+          "window": "minute"
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/feed": {
+      "get": {
+        "operationId": "getFeed",
+        "description": "Returns the feed.",
+        "responses": {
+          "200": {
+            "description": "ok"
+          }
+        }
+      }
+    },
+    "/v1/improvements/metrics": {
+      "get": {
+        "operationId": "getImprovementMetrics",
+        "description": "Operator-only pipeline metrics.",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Metric"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "$ref": "#/components/schemas/Handle"
+          }
+        }
+      },
+      "Handle": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "Metric": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "Unused": {
+        "type": "object",
+        "properties": {
+          "junk": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
