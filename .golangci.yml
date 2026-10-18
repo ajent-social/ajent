@@ -1,0 +1,22 @@
+version: "2"
+linters:
+  default: standard
+  enable:
+    - gosec
+    - errorlint
+    - misspell
+    - revive
+    - bodyclose
+    - unconvert
+  exclusions:
+    rules:
+      # Tests read and write files under t.TempDir() or repo testdata, re-exec
+      # the test binary, and use placeholder env names. These gosec rules
+      # only produce false positives there. Production code is still checked.
+      - path: _test\.go
+        linters:
+          - gosec
+        text: "G101|G204|G304|G306|G703"
+formatters:
+  enable:
+    - gofmt

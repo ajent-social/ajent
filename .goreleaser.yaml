@@ -1,0 +1,173 @@
+# SPDX-License-Identifier: Apache-2.0
+# GoReleaser v2.18.2. Sections below are owned by different plan tasks.
+# Edit only the lines between your own BEGIN and END markers.
+version: 2
+project_name: ajent
+
+# ---- BEGIN base (T5.2) ----
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - id: ajent
+    main: ./cmd/ajent
+    binary: ajent
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X github.com/ajent-social/ajent-client/internal/version.Version={{ .Version }}
+      - -X github.com/ajent-social/ajent-client/internal/version.Commit={{ .ShortCommit }}
+      - -X github.com/ajent-social/ajent-client/internal/version.Date={{ .CommitDate }}
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    goos: [darwin, linux, windows]
+    goarch: [amd64, arm64]
+archives:
+  - id: default
+    ids: [ajent]
+    name_template: "ajent_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files:
+      - LICENSE
+      - NOTICE
+      - README.md
+checksum:
+  name_template: checksums.txt
+  algorithm: sha256
+sboms:
+  - artifacts: archive
+snapshot:
+  version_template: "{{ incpatch .Version }}-SNAPSHOT-{{ .ShortCommit }}"
+changelog:
+  disable: true
+release:
+  github:
+    owner: ajent-social
+    name: ajent-client
+  mode: keep-existing
+  replace_existing_artifacts: false
+# ---- END base (T5.2) ----
+
+# ---- BEGIN signs (T5.3) ----
+signs:
+  - id: ed25519
+    artifacts: checksum
+    signature: "${artifact}.sig"
+    cmd: go
+    args: ["run", "./internal/tools/signchecksums", "-in", "${artifact}", "-out", "${signature}"]
+# ---- END signs (T5.3) ----
+
+# ---- BEGIN notarize (T5.4) ----
+# ---- END notarize (T5.4) ----
+
+# ---- BEGIN homebrew_casks (T5.5) ----
+homebrew_casks:
+  - name: ajent
+    ids: [default]
+    binaries: [ajent]
+    repository:
+      owner: ajent-social
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    directory: Casks
+    homepage: https://ajent.social/
+    description: "Shared, private memory of checked findings for your coding agents"
+    license: Apache-2.0
+    commit_author:
+      name: ajent-release-bot
+      email: ajent-release-bot@users.noreply.github.com
+    commit_msg_template: "ajent {{ .Tag }}"
+    caveats: "Run `ajent setup` to connect your coding agents."
+    skip_upload: auto
+# ---- END homebrew_casks (T5.5) ----
+
+# ---- BEGIN nfpms (T5.6) ----
+nfpms:
+  - id: packages
+    ids: [ajent]
+    package_name: ajent
+    file_name_template: "{{ .ConventionalFileName }}"
+    vendor: Ajent
+    homepage: https://ajent.social
+    maintainer: "Ajent maintainers <maintainers@ajent.social>"
+    description: "Connect your coding agents to a shared, private workspace of checked findings through MCP."
+    license: Apache-2.0
+    section: utils
+    priority: optional
+    formats: [deb, rpm]
+    bindir: /usr/bin
+    contents:
+      - src: LICENSE
+        dst: /usr/share/doc/ajent/LICENSE
+        file_info:
+          mode: 0644
+      - src: NOTICE
+        dst: /usr/share/doc/ajent/NOTICE
+        file_info:
+          mode: 0644
+      - src: README.md
+        dst: /usr/share/doc/ajent/README.md
+        file_info:
+          mode: 0644
+    scripts:
+      postinstall: packaging/postinstall.sh
+    rpm:
+      group: Development/Tools
+# ---- END nfpms (T5.6) ----
+
+# ---- BEGIN scoops and winget (T5.8) ----
+scoops:
+  - name: ajent
+    ids: [default]
+    repository:
+      owner: ajent-social
+      name: scoop-bucket
+      branch: main
+      token: "{{ .Env.SCOOP_BUCKET_TOKEN }}"
+    directory: bucket
+    homepage: https://ajent.social
+    description: "Connect your coding agents to a shared, private workspace of checked findings through MCP."
+    license: Apache-2.0
+    commit_author:
+      name: ajent-release-bot
+      email: ajent-release-bot@users.noreply.github.com
+    commit_msg_template: "ajent {{ .Tag }}"
+    skip_upload: auto
+winget:
+  - name: ajent
+    ids: [default]
+    package_identifier: AjentSocial.Ajent
+    publisher: Ajent
+    publisher_url: https://ajent.social
+    publisher_support_url: https://github.com/ajent-social/ajent-client/issues
+    author: The Ajent Authors
+    homepage: https://github.com/ajent-social/ajent-client
+    short_description: "Connect your coding agents to a shared, private workspace of checked findings through MCP."
+    license: Apache-2.0
+    license_url: https://github.com/ajent-social/ajent-client/blob/main/LICENSE
+    copyright: "Copyright 2026 The Ajent Authors"
+    release_notes_url: "https://github.com/ajent-social/ajent-client/releases/tag/{{ .Tag }}"
+    tags: [mcp, cli, ai-agents, developer-tools]
+    commit_author:
+      name: ajent-release-bot
+      email: ajent-release-bot@users.noreply.github.com
+    repository:
+      owner: ajent-social
+      name: winget-pkgs
+      branch: "ajent-{{ .Version }}"
+      token: "{{ .Env.WINGET_TOKEN }}"
+      pull_request:
+        enabled: true
+        draft: false
+        base:
+          owner: microsoft
+          name: winget-pkgs
+          branch: master
+    skip_upload: auto
+# ---- END scoops and winget (T5.8) ----

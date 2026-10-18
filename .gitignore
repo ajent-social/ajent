@@ -1,0 +1,18 @@
+.claude/scratch/
+ajent.social
+dist/
+/ajent
+/ajent.exe
+/codex.sh
+*.test
+coverage.out
+*.out
+.DS_Store
+.claude/worktrees/
+
+# Keep fixture homes tracked even when a global gitignore excludes tool dirs
+# such as .cursor/ or .gemini/.
+!/testdata/**/.cursor/
+!/testdata/**/.gemini/
+!/testdata/**/.copilot/
+!/testdata/**/.agents/

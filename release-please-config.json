@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "include-component-in-tag": false,
+  "include-v-in-tag": true,
+  "signoff": "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+  "packages": {
+    ".": {
+      "release-type": "go",
+      "package-name": "ajent",
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": true,
+      "force-tag-creation": true,
+      "prerelease": false,
+      "extra-files": [
+        {"type": "json", "path": "plugins/ajent/.claude-plugin/plugin.json", "jsonpath": "$.version"},
+        {"type": "json", "path": "plugins/ajent/.codex-plugin/plugin.json", "jsonpath": "$.version"},
+        {"type": "json", "path": ".claude-plugin/marketplace.json", "jsonpath": "$.plugins[0].version"}
+      ],
+      "changelog-sections": [
+        {"type": "feat", "section": "Features"},
+        {"type": "fix", "section": "Fixes"},
+        {"type": "perf", "section": "Performance"},
+        {"type": "docs", "section": "Documentation"},
+        {"type": "chore", "section": "Other changes", "hidden": true},
+        {"type": "ci", "section": "Other changes", "hidden": true},
+        {"type": "test", "section": "Other changes", "hidden": true}
+      ]
+    }
+  }
+}
