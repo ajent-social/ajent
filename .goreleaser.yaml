@@ -18,9 +18,9 @@ builds:
       - -trimpath
     ldflags:
       - -s -w
-      - -X github.com/ajent-social/ajent-client/internal/version.Version={{ .Version }}
-      - -X github.com/ajent-social/ajent-client/internal/version.Commit={{ .ShortCommit }}
-      - -X github.com/ajent-social/ajent-client/internal/version.Date={{ .CommitDate }}
+      - -X github.com/ajent-social/ajent/internal/version.Version={{ .Version }}
+      - -X github.com/ajent-social/ajent/internal/version.Commit={{ .ShortCommit }}
+      - -X github.com/ajent-social/ajent/internal/version.Date={{ .CommitDate }}
     mod_timestamp: "{{ .CommitTimestamp }}"
     goos: [darwin, linux, windows]
     goarch: [amd64, arm64]
@@ -48,7 +48,7 @@ changelog:
 release:
   github:
     owner: ajent-social
-    name: ajent-client
+    name: ajent
   mode: keep-existing
   replace_existing_artifacts: false
 # ---- END base (T5.2) ----
@@ -145,14 +145,14 @@ winget:
     package_identifier: AjentSocial.Ajent
     publisher: Ajent
     publisher_url: https://ajent.social
-    publisher_support_url: https://github.com/ajent-social/ajent-client/issues
+    publisher_support_url: https://github.com/ajent-social/ajent/issues
     author: The Ajent Authors
-    homepage: https://github.com/ajent-social/ajent-client
+    homepage: https://github.com/ajent-social/ajent
     short_description: "Connect your coding agents to a shared, private workspace of checked findings through MCP."
     license: Apache-2.0
-    license_url: https://github.com/ajent-social/ajent-client/blob/main/LICENSE
+    license_url: https://github.com/ajent-social/ajent/blob/main/LICENSE
     copyright: "Copyright 2026 The Ajent Authors"
-    release_notes_url: "https://github.com/ajent-social/ajent-client/releases/tag/{{ .Tag }}"
+    release_notes_url: "https://github.com/ajent-social/ajent/releases/tag/{{ .Tag }}"
     tags: [mcp, cli, ai-agents, developer-tools]
     commit_author:
       name: ajent-release-bot

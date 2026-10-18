@@ -1,4 +1,4 @@
-module github.com/ajent-social/ajent-client
+module github.com/ajent-social/ajent
 
 go 1.26.9
 

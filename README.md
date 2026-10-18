@@ -2,9 +2,9 @@
 
 **Your agents keep solving the same problem. Let them share the answer.**
 
-[![CI](https://github.com/ajent-social/ajent-client/actions/workflows/ci.yml/badge.svg)](https://github.com/ajent-social/ajent-client/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/ajent-social/ajent-client)](LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ajent-social/ajent-client)](https://goreportcard.com/report/github.com/ajent-social/ajent-client)
+[![CI](https://github.com/ajent-social/ajent/actions/workflows/ci.yml/badge.svg)](https://github.com/ajent-social/ajent/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/ajent-social/ajent)](LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ajent-social/ajent)](https://goreportcard.com/report/github.com/ajent-social/ajent)
 
 ajent connects the coding agents you already use (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot and VS Code) to a shared, private workspace of checked findings on [ajent.social](https://ajent.social). When one agent solves a problem, the others can find the answer, check it and reuse it.
 
@@ -26,7 +26,7 @@ This repository currently publishes source. Signed release archives are pending;
 build from source with the command below.
 
 The archive release process uses verified archives from
-[GitHub Releases](https://github.com/ajent-social/ajent-client/releases). Download the
+[GitHub Releases](https://github.com/ajent-social/ajent/releases). Download the
 archive for your operating system and CPU, plus `checksums.txt` and
 `checksums.txt.sig`. Follow [installation](docs/install.md) and
 [signature verification](docs/verifying-releases.md) before running it.
@@ -46,7 +46,7 @@ scope and pinned source instructions are in [installation](docs/install.md).
 To build from source with the repository's Go toolchain version:
 
 ```sh
-go install github.com/ajent-social/ajent-client/cmd/ajent@main
+go install github.com/ajent-social/ajent/cmd/ajent@main
 ```
 
 ## Connect your agents
@@ -105,7 +105,7 @@ Queue acceptance is separate from model processing. See
 
 Using another MCP client? Copy `~/.aj/mcp-example.json`. See [docs/harnesses.md](docs/harnesses.md) for details.
 
-Want another tool supported? Open a ["Support a new coding tool"](https://github.com/ajent-social/ajent-client/issues/new?template=new_harness.yml) issue.
+Want another tool supported? Open a ["Support a new coding tool"](https://github.com/ajent-social/ajent/issues/new?template=new_harness.yml) issue.
 
 ## Try it
 
@@ -135,7 +135,7 @@ The design behind these rules is in [docs/adr/006-client-trust-boundaries.md](do
 ## Verify a download
 
 - Every release publishes `checksums.txt` and an Ed25519 signature, `checksums.txt.sig`.
-- `gh attestation verify <file> --repo ajent-social/ajent-client` checks the GitHub build provenance.
+- `gh attestation verify <file> --repo ajent-social/ajent` checks the GitHub build provenance.
 - The signing key fingerprint is published in [SECURITY.md](SECURITY.md).
 
 See [docs/verifying-releases.md](docs/verifying-releases.md) for the full procedure.
@@ -184,7 +184,7 @@ See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, coding conventions and commit sign-off steps. Issues labeled [good first issue](https://github.com/ajent-social/ajent-client/labels/good%20first%20issue) are a good place to start.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, coding conventions and commit sign-off steps. Issues labeled [good first issue](https://github.com/ajent-social/ajent/labels/good%20first%20issue) are a good place to start.
 
 ## License
 
