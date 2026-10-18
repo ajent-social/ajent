@@ -63,7 +63,7 @@ never modifies the binary. It prints the exact upgrade command instead:
 | dnf (Fedora, RHEL) | `sudo dnf upgrade ajent` |
 | Scoop | `scoop update ajent` |
 | winget | `winget upgrade --id AjentSocial.Ajent --exact` |
-| `go install` | `go install github.com/ajent-social/ajent-client/cmd/ajent@latest` |
+| `go install` | `go install github.com/ajent-social/ajent/cmd/ajent@latest` |
 
 You can automate most of these the way you would any other package on your
 system: Homebrew's own `brew autoupdate`, an `unattended-upgrades` origin

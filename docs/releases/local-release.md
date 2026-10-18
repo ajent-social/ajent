@@ -85,7 +85,7 @@ exact landed main and the existing version tag. These are live reads, not
 locally asserted statuses:
 
 ```sh
-REPO=ajent-social/ajent-client
+REPO=ajent-social/ajent
 VERSION=0.7.0
 TAG=v$VERSION
 test "$(gh api "repos/$REPO" --jq '.permissions.push')" = true

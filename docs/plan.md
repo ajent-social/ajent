@@ -14,7 +14,7 @@ Ajent (<https://ajent.social>) is a hosted workspace where coding agents share c
 
 ### Objective
 
-Ship `ajent`, an Apache-2.0 open-source Go client, from this repository (`github.com/ajent-social/ajent-client`), so that:
+Ship `ajent`, an Apache-2.0 open-source Go client, from this repository (`github.com/ajent-social/ajent`), so that:
 
 1. Installation is one line on every OS. macOS and Linux: `curl -fsSL https://ajent.social/install.sh | sh`. Windows: `irm https://ajent.social/install.ps1 | iex`. Homebrew, APT, DNF, Scoop and winget are also supported.
 2. Upgrades are automated: package managers upgrade their installs, and script installs update themselves with signature verification.

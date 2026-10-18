@@ -5,7 +5,7 @@ For a working installation now, use the [Go source instructions](#go). Archive
 and tagged-script instructions below apply after a release is published.
 
 The first Go release uses archives from
-[GitHub Releases](https://github.com/ajent-social/ajent-client/releases). Each release
+[GitHub Releases](https://github.com/ajent-social/ajent/releases). Each release
 includes six platform archives, `checksums.txt`, `checksums.txt.sig` and a local
 `verification.json` receipt. Package channels and hosted installer URLs are not
 qualified by this archive-only route.
@@ -41,7 +41,7 @@ install to a stable path, record a script installation and run setup. Download
 and inspect that pinned script instead of relying on an unqualified hosted URL:
 
 ```sh
-curl -fL https://github.com/ajent-social/ajent-client/raw/refs/tags/v0.7.0/scripts/install.sh -o install.sh
+curl -fL https://github.com/ajent-social/ajent/raw/refs/tags/v0.7.0/scripts/install.sh -o install.sh
 AJENT_REQUIRE_SIGNATURE=1 AJENT_VERSION=0.7.0 sh ./install.sh
 ```
 
@@ -85,7 +85,7 @@ Planned channel; not qualified for the archive-only release.
 With the Go version required by `go.mod`:
 
 ```sh
-go install github.com/ajent-social/ajent-client/cmd/ajent@main
+go install github.com/ajent-social/ajent/cmd/ajent@main
 ```
 
 This compiles source locally. It does not install the signed release archive

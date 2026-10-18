@@ -13,7 +13,7 @@ installed from:
 | DNF (Fedora, RHEL) | `sudo dnf upgrade ajent` |
 | Scoop | `scoop update ajent` |
 | winget | `winget upgrade --id AjentSocial.Ajent --exact` |
-| `go install` | `go install github.com/ajent-social/ajent-client/cmd/ajent@latest` |
+| `go install` | `go install github.com/ajent-social/ajent/cmd/ajent@latest` |
 
 ## Script installs update automatically
 

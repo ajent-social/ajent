@@ -4,7 +4,7 @@ Acceptance: A contributor can clone, build, test and open a DCO-signed PR. CI ru
 fidelity: executable
 
 - [x] T1.1 Initialize the Go module and layout  Owner: TBD  Est: 45m  verifies: [infrastructure]  deps: []  acc: [go build ./... succeeds and ./ajent version prints version, commit and build date]
-  - Create `go.mod` (`module github.com/ajent-social/ajent-client`, `go 1.26`), `cmd/ajent/main.go`, `internal/version` (ldflags vars `Version`, `Commit`, `Date`, and `ClientKind = "go-cli"`), and empty package dirs from docs/design.md.
+  - Create `go.mod` (`module github.com/ajent-social/ajent`, `go 1.26`), `cmd/ajent/main.go`, `internal/version` (ldflags vars `Version`, `Commit`, `Date`, and `ClientKind = "go-cli"`), and empty package dirs from docs/design.md.
   - `.gitignore`: `dist/`, `.claude/scratch/`, `ajent.social`, `*.test`, `coverage.out`. `.editorconfig`. `Makefile` targets `fmt`, `lint`, `test`, `build`, `docs`.
   - S1.1.1 Test: `internal/version` unit test covers default values and the `ajent version --json` shape.
 - [x] T1.2 Add the Apache-2.0 license, NOTICE and header check  Owner: TBD  Est: 30m  verifies: [infrastructure]  deps: []  acc: [scripts/check-license-headers.sh exits 0 on the tree and 1 when a .go file lacks the SPDX header]
@@ -24,7 +24,7 @@ fidelity: executable
   - The denylist content is maintained privately by maintainers and is never committed (ADR 001).
 - [x] T1.6 Write agent-contributor guidance  Owner: TBD  Est: 30m  delivers: [AGENTS.md and CLAUDE.md pointer]  deps: []
   - AGENTS.md covers the stdlib-first rule, `flag` only, no network in unit tests, stdout purity for MCP, the backup-before-write rule, small commits, and running `make fmt lint test` before PRs. CLAUDE.md is one line that imports AGENTS.md.
-- [x] T1.7 Configure repository settings  Owner: TBD  Est: 30m  verifies: [infrastructure]  deps: []  kind: any  acc: [gh api repos/ajent-social/ajent-client shows the description, topics and homepage set, and branch protection requires CI, DCO and leak-scan]
+- [x] T1.7 Configure repository settings  Owner: TBD  Est: 30m  verifies: [infrastructure]  deps: []  kind: any  acc: [gh api repos/ajent-social/ajent shows the description, topics and homepage set, and branch protection requires CI, DCO and leak-scan]
   - Use `gh api` to set: private vulnerability reporting on, Discussions on, squash or rebase merges only, and a `main` protection rule with linear history and required checks from T1.4 and T1.5. Leave the repository private until E8. Description and topics come from the plan Appendix A.
-- [x] T1.8 Set the private leak denylist secret  Owner: David  Est: 20m  verifies: [infrastructure]  deps: [T1.5]  kind: human  acc: [gh secret list -R ajent-social/ajent-client shows LEAK_DENYLIST, and the leak-scan job on main passes]
+- [x] T1.8 Set the private leak denylist secret  Owner: David  Est: 20m  verifies: [infrastructure]  deps: [T1.5]  kind: human  acc: [gh secret list -R ajent-social/ajent shows LEAK_DENYLIST, and the leak-scan job on main passes]
   - Until this row is done, pushes to `main` fail by design, because the leak scan fails closed.

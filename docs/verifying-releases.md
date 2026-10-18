@@ -7,7 +7,7 @@ channels, GitHub build provenance or operating-system signing.
 ## Checksums
 
 Download the archive, `checksums.txt` and `checksums.txt.sig` from the same
-[GitHub release](https://github.com/ajent-social/ajent-client/releases). Compare the
+[GitHub release](https://github.com/ajent-social/ajent/releases). Compare the
 archive's SHA-256 hash with its exact filename entry:
 
 ```sh
@@ -32,7 +32,7 @@ the downloaded checksum files before running the verification commands. For
 v0.7.0, the pinned source download and fingerprint check are:
 
 ```sh
-curl -fL https://github.com/ajent-social/ajent-client/raw/refs/tags/v0.7.0/packaging/ajent-release.pub.pem -o ajent-release.pub.pem
+curl -fL https://github.com/ajent-social/ajent/raw/refs/tags/v0.7.0/packaging/ajent-release.pub.pem -o ajent-release.pub.pem
 openssl pkey -pubin -in ajent-release.pub.pem -outform DER | openssl dgst -sha256
 ```
 
