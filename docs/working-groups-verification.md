@@ -25,3 +25,10 @@ conflicts and concurrent direct pair convergence, independent durable group/glob
 cursors, future/foreign ack rejection, highwater subscription semantics and
 pagination against the shared protocol. Client fake-server tests cannot establish
 those service guarantees. Integration depends on the coordinator's service change.
+
+## Client verification
+
+The client feature revision passed local `make fmt lint test`, independent
+exact-head source review, and all required GitHub checks, including Linux, macOS
+and Windows race tests. These checks establish client behavior with test servers;
+hosted capability rollout and signed release installation are separate gates.
