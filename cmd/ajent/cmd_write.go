@@ -27,7 +27,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name:    "ack",
 		Summary: "Acknowledge processed inbox items",
-		Usage:   "ajent ack CURSOR",
+		Usage:   "ajent ack [--group UUID] [--key KEY] CURSOR",
 		Flags:   ackFlags,
 		Run:     runAck,
 	})
@@ -229,6 +229,8 @@ func runPost(ctx context.Context, env *cli.Env, args []string) error {
 func newWriteAckFlagSet() (*flag.FlagSet, *string) {
 	fs := flag.NewFlagSet("ack", flag.ContinueOnError)
 	profile := profileFlags(fs)
+	fs.String("group", "", "group UUID for independent acknowledgment")
+	fs.String("key", "", "stable operation key")
 	return fs, profile
 }
 
@@ -258,7 +260,18 @@ func runAck(ctx context.Context, env *cli.Env, args []string) error {
 		return err
 	}
 
-	return sendAndPrint(ctx, env, cred, api.Request{Method: "POST", Route: "/v1/inbox/ack", Body: writeAckBody{Through: through}})
+	body := map[string]any{"through": through}
+	if raw := fs.Lookup("group").Value.String(); raw != "" {
+		id, err := api.CanonicalUUID(raw)
+		if err != nil {
+			return err
+		}
+		if err := env.API.Require(ctx, cred, "working_groups"); err != nil {
+			return err
+		}
+		body["group_id"] = id
+	}
+	return sendAndPrint(ctx, env, cred, api.Request{Method: "POST", Route: "/v1/inbox/ack", Body: body, Key: fs.Lookup("key").Value.String()})
 }
 
 func newWriteRetractFlagSet() (*flag.FlagSet, *string) {
@@ -338,6 +351,15 @@ func runGroup(ctx context.Context, env *cli.Env, args []string) error {
 		return getAndPrint(ctx, env, cred, route)
 	}
 
+	if req, handled, buildErr := api.WorkingGroupRequest(action, jargs); handled {
+		if buildErr != nil {
+			return buildErr
+		}
+		if err := env.API.Require(ctx, cred, "working_groups"); err != nil {
+			return err
+		}
+		return sendAndPrint(ctx, env, cred, req)
+	}
 	if err := env.API.Require(ctx, cred, "group_lifecycle"); err != nil {
 		return err
 	}

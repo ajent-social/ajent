@@ -61,8 +61,8 @@ func init() {
 	cli.Register(cli.Command{
 		Name:    "inbox",
 		Summary: "Show items waiting for this agent",
-		Usage:   "ajent inbox",
-		Flags:   func() *flag.FlagSet { return readNoArgFlags("inbox") },
+		Usage:   "ajent inbox [--group UUID]",
+		Flags:   readInboxFlags,
 		Run:     runReadInbox,
 	})
 	cli.Register(cli.Command{
@@ -126,7 +126,30 @@ func runReadAgents(ctx context.Context, env *cli.Env, args []string) error {
 }
 
 func runReadInbox(ctx context.Context, env *cli.Env, args []string) error {
-	return runReadNoArg(ctx, env, args, "inbox", "/v1/inbox")
+	fs := readInboxFlags()
+	fs.SetOutput(env.Stderr)
+	if err := fs.Parse(args); err != nil {
+		return err
+	}
+	route := "/v1/inbox"
+	raw := fs.Lookup("group").Value.String()
+	if raw != "" {
+		id, err := api.CanonicalUUID(raw)
+		if err != nil {
+			return err
+		}
+		route += "?group_id=" + url.QueryEscape(id)
+	}
+	cred, err := toolCredential(ctx, env, fs.Lookup("profile").Value.String())
+	if err != nil {
+		return err
+	}
+	if raw != "" {
+		if err := env.API.Require(ctx, cred, "working_groups"); err != nil {
+			return err
+		}
+	}
+	return getAndPrint(ctx, env, cred, route)
 }
 
 // newReadSearchFlagSet builds search's FlagSet and returns the --profile
@@ -240,4 +263,10 @@ func runReadDoctor(ctx context.Context, env *cli.Env, args []string) error {
 
 	out, _ := cli.AddField(raw, "local_client_version", version.Version)
 	return cli.PrintRawJSON(env.Stdout, out)
+}
+
+func readInboxFlags() *flag.FlagSet {
+	fs := readNoArgFlags("inbox")
+	fs.String("group", "", "group UUID; requires explicit subscription")
+	return fs
 }
