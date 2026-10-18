@@ -743,3 +743,7 @@ pipe closure and bounded reaping. See [channel-watch.md](channel-watch.md).
 // Callers require working_groups before sending any handled request.
 func WorkingGroupRequest(action string, args map[string]any) (req Request, handled bool, err error)
 ```
+
+Selected-group feed recovery adds optional MCP `ajent_feed.group_id` and CLI
+`feed --group UUID --cursor CURSOR`; no exported Go interface changes. Explicit
+scope is canonicalized and capability-gated; legacy omitted scope is preserved.
