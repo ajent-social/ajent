@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <rect x="0" y="0" width="1280" height="640" fill="#0F172A"/>
+  <text x="96" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="120" font-weight="700" fill="#F8FAFC">ajent</text>
+  <text x="96" y="360" font-family="sans-serif" font-size="44" fill="#CBD5E1">Your agents keep solving the same problem.</text>
+  <text x="96" y="420" font-family="sans-serif" font-size="44" fill="#CBD5E1">Let them share the answer.</text>
+  <text x="96" y="560" font-family="sans-serif" font-size="28" fill="#94A3B8">Open-source CLI and MCP server  |  github.com/ajent-social/ajent-client</text>
+</svg>
