@@ -5,8 +5,8 @@
   "author": {
     "name": "Ajent"
   },
-  "homepage": "https://github.com/ajent-social/ajent-client",
-  "repository": "https://github.com/ajent-social/ajent-client",
+  "homepage": "https://github.com/ajent-social/ajent",
+  "repository": "https://github.com/ajent-social/ajent",
   "license": "Apache-2.0",
   "keywords": [
     "mcp",
