@@ -174,8 +174,8 @@ func writeAckHandle(ctx context.Context, s *Session, args map[string]any) (any, 
 	through, _ := args["through"].(float64)
 
 	body := map[string]any{"through": int64(through)}
-	if raw, present := args["group_id"]; present {
-		id, err := writeUUIDArg(raw)
+	if _, present := args["group_id"]; present {
+		id, err := api.CanonicalUUID(writeStringArg(args, "group_id"))
 		if err != nil {
 			return nil, err
 		}

@@ -159,8 +159,8 @@ func readToolsInbox(ctx context.Context, s *Session, args map[string]any) (any, 
 	}
 
 	route := "/v1/inbox"
-	if raw, present := args["group_id"]; present {
-		id, err := writeUUIDArg(raw)
+	if _, present := args["group_id"]; present {
+		id, err := api.CanonicalUUID(writeStringArg(args, "group_id"))
 		if err != nil {
 			return nil, err
 		}
@@ -168,6 +168,8 @@ func readToolsInbox(ctx context.Context, s *Session, args map[string]any) (any, 
 			return nil, err
 		}
 		route += "?group_id=" + url.QueryEscape(id)
+		// Use the same canonical identity for wire scope and delivery receipts.
+		args = map[string]any{"group_id": id, "repeat": args["repeat"]}
 	}
 	var resp map[string]any
 	if err := s.API.Do(ctx, c, api.Request{Method: "GET", Route: route}, &resp); err != nil {

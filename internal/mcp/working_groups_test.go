@@ -38,14 +38,14 @@ func TestWorkingGroupsCapabilityAndWire(t *testing.T) {
 	for _, supported := range []bool{false, true} {
 		t.Run(map[bool]string{false: "absent", true: "available"}[supported], func(t *testing.T) {
 			srv := fakeserver.New(t)
-			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, r *http.Request) {
+			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) {
 				caps := []string{}
 				if supported {
 					caps = append(caps, "working_groups")
 				}
 				_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": caps})
 			})
-			srv.Handle("POST", "/v1/groups/direct", func(w http.ResponseWriter, r *http.Request) {
+			srv.Handle("POST", "/v1/groups/direct", func(w http.ResponseWriter, _ *http.Request) {
 				_ = json.NewEncoder(w).Encode(map[string]any{"id": writeTestGroupID})
 			})
 			s := writeTestSession(t, srv)
@@ -75,7 +75,7 @@ func TestWorkingGroupsCapabilityAndWire(t *testing.T) {
 
 func TestWorkingGroupsScopedInboxAck(t *testing.T) {
 	srv := fakeserver.New(t)
-	srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, r *http.Request) {
+	srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) {
 		_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": []string{"working_groups"}})
 	})
 	srv.Handle("GET", "/v1/inbox", func(w http.ResponseWriter, r *http.Request) {
@@ -125,5 +125,122 @@ func TestCompactListWorkingGroupTruncation(t *testing.T) {
 	}
 	if len(scope) != 3 {
 		t.Fatal("shared scope mutated")
+	}
+}
+
+func TestWorkingGroupsValidatedDispatch(t *testing.T) {
+	for _, tc := range []struct {
+		name, tool  string
+		args        map[string]any
+		probeStatus int
+		caps        []string
+		wantProbe   bool
+	}{
+		{name: "invalid action", tool: "ajent_groups", args: map[string]any{"action": "wake"}},
+		{name: "invalid group type", tool: "ajent_inbox", args: map[string]any{"group_id": true}},
+		{name: "unknown ack field", tool: "ajent_ack", args: map[string]any{"through": float64(3), "group_id": writeTestGroupID, "global": true}},
+		{name: "unsupported scope", tool: "ajent_inbox", args: map[string]any{"group_id": writeTestGroupID}, probeStatus: 200, caps: []string{}, wantProbe: true},
+		{name: "probe failure", tool: "ajent_ack", args: map[string]any{"through": float64(3), "group_id": writeTestGroupID}, probeStatus: 503, caps: []string{}, wantProbe: true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			srv := fakeserver.New(t)
+			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) {
+				w.Header().Set("Retry-After", "3")
+				status := tc.probeStatus
+				if status == 0 {
+					status = http.StatusOK
+				}
+				w.WriteHeader(status)
+				_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": tc.caps})
+			})
+			d := &dispatcher{s: writeTestSession(t, srv)}
+			result, after, err := d.CallTool(context.Background(), serveTestCallParams(t, tc.tool, tc.args))
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !serveTestIsError(t, result) || after != nil {
+				t.Fatal("invalid or unsupported call succeeded")
+			}
+			probes := 0
+			for _, r := range srv.Requests() {
+				if r.Path != "/v1/reliability" {
+					t.Fatal("rejected dispatch sent operation")
+				}
+				probes++
+			}
+			if tc.wantProbe && probes == 0 || !tc.wantProbe && probes != 0 {
+				t.Fatal("unexpected capability probe count")
+			}
+		})
+	}
+}
+
+func TestWorkingGroupsCanonicalScopeDispatch(t *testing.T) {
+	for _, raw := range []string{writeTestGroupID, strings.ToUpper(writeTestGroupID), strings.ReplaceAll(writeTestGroupID, "-", ""), "{" + writeTestGroupID + "}", "urn:uuid:" + writeTestGroupID} {
+		t.Run(raw, func(t *testing.T) {
+			srv := fakeserver.New(t)
+			srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) {
+				_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": []string{"working_groups"}})
+			})
+			srv.Handle("GET", "/v1/inbox", func(w http.ResponseWriter, r *http.Request) {
+				if r.URL.Query().Get("group_id") != writeTestGroupID {
+					t.Error("noncanonical query scope")
+				}
+				_ = json.NewEncoder(w).Encode(map[string]any{"items": []any{map[string]any{"id": "post", "kind": "finding", "seq": 1}}, "acknowledge_through": 1})
+			})
+			s := writeTestSession(t, srv)
+			s.Cache = OpenCache(t.TempDir(), "terminal")
+			d := &dispatcher{s: s}
+			for _, tool := range []string{"ajent_inbox", "ajent_ack"} {
+				args := map[string]any{"group_id": raw}
+				if tool == "ajent_ack" {
+					args["through"] = float64(1)
+					args["key"] = "stable"
+				}
+				result, after, err := d.CallTool(context.Background(), serveTestCallParams(t, tool, args))
+				if err != nil {
+					t.Fatal(err)
+				}
+				if serveTestIsError(t, result) {
+					t.Fatal("valid canonicalizable scope rejected")
+				}
+				if after != nil {
+					after()
+				}
+				if tool == "ajent_inbox" {
+					repeatResult, _, err := d.CallTool(context.Background(), serveTestCallParams(t, tool, map[string]any{"group_id": writeTestGroupID}))
+					if err != nil {
+						t.Fatal(err)
+					}
+					if serveTestIsError(t, repeatResult) {
+						t.Fatal("canonical repeat failed")
+					}
+					var envelope struct {
+						Data struct {
+							Items []any `json:"items"`
+						} `json:"data"`
+					}
+					if err := json.Unmarshal([]byte(serveTestContentText(t, repeatResult)), &envelope); err != nil {
+						t.Fatal(err)
+					}
+					if len(envelope.Data.Items) != 0 {
+						t.Fatal("equivalent UUID forms used different receipt scopes")
+					}
+				}
+			}
+			found := false
+			for _, r := range srv.Requests() {
+				if r.Path == "/v1/inbox/ack" {
+					found = true
+					body := writeTestDecodeBody(t, r.Body)
+					if body["group_id"] != writeTestGroupID || r.Header.Get("Idempotency-Key") != "stable" {
+						t.Fatal("ack scope or key changed")
+					}
+				}
+			}
+			if !found {
+				t.Fatal("ack missing")
+			}
+		})
 	}
 }
