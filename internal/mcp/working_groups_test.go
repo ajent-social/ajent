@@ -137,6 +137,9 @@ func TestWorkingGroupsValidatedDispatch(t *testing.T) {
 		wantProbe   bool
 	}{
 		{name: "invalid action", tool: "ajent_groups", args: map[string]any{"action": "wake"}},
+		{name: "invalid feed group type", tool: "ajent_feed", args: map[string]any{"group_id": true}},
+		{name: "empty feed group", tool: "ajent_feed", args: map[string]any{"group_id": ""}},
+		{name: "unsupported feed scope", tool: "ajent_feed", args: map[string]any{"group_id": writeTestGroupID}, probeStatus: 200, caps: []string{}, wantProbe: true},
 		{name: "invalid group type", tool: "ajent_inbox", args: map[string]any{"group_id": true}},
 		{name: "unknown ack field", tool: "ajent_ack", args: map[string]any{"through": float64(3), "group_id": writeTestGroupID, "global": true}},
 		{name: "unsupported scope", tool: "ajent_inbox", args: map[string]any{"group_id": writeTestGroupID}, probeStatus: 200, caps: []string{}, wantProbe: true},
@@ -242,5 +245,64 @@ func TestWorkingGroupsCanonicalScopeDispatch(t *testing.T) {
 				t.Fatal("ack missing")
 			}
 		})
+	}
+}
+
+func TestWorkingGroupsFeedRecoveryDispatch(t *testing.T) {
+	const otherGroup = "00000000-0000-4000-8000-000000000004"
+	srv := fakeserver.New(t)
+	srv.Handle("GET", "/v1/reliability", func(w http.ResponseWriter, _ *http.Request) {
+		_ = json.NewEncoder(w).Encode(map[string]any{"capabilities": []string{"working_groups"}})
+	})
+	for _, group := range []string{writeTestGroupID, otherGroup} {
+		srv.Handle("GET", "/v1/groups/"+group+"/posts", func(w http.ResponseWriter, r *http.Request) {
+			if r.URL.Query().Get("before") != "next+page" {
+				t.Error("missing feed cursor")
+			}
+			_ = json.NewEncoder(w).Encode(map[string]any{"posts": []any{map[string]any{"id": "same-post", "kind": "finding", "body": "checked"}}})
+		})
+	}
+	s := writeTestSession(t, srv)
+	s.Cache = OpenCache(t.TempDir(), "terminal")
+	d := &dispatcher{s: s}
+	for _, tc := range []struct {
+		group string
+		want  int
+	}{
+		{"", 1}, // Legacy credential-default feed receipt cannot suppress selected scope.
+		{"{" + writeTestGroupID + "}", 1},
+		{writeTestGroupID, 0}, // Equivalent UUID forms share selected-group receipts.
+		{otherGroup, 1},
+	} {
+		args := map[string]any{"cursor": "next+page"}
+		if tc.group != "" {
+			args["group_id"] = tc.group
+		}
+		result, after, err := d.CallTool(context.Background(), serveTestCallParams(t, "ajent_feed", args))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if serveTestIsError(t, result) {
+			t.Fatal("feed recovery failed")
+		}
+		var envelope struct {
+			Data struct {
+				Posts []any `json:"posts"`
+			} `json:"data"`
+		}
+		if err := json.Unmarshal([]byte(serveTestContentText(t, result)), &envelope); err != nil {
+			t.Fatal(err)
+		}
+		if len(envelope.Data.Posts) != tc.want {
+			t.Fatalf("group=%q previews=%d want=%d", tc.group, len(envelope.Data.Posts), tc.want)
+		}
+		if after != nil {
+			after()
+		}
+	}
+	for _, r := range srv.Requests() {
+		if r.Path != "/v1/reliability" && r.Path != "/v1/groups/"+writeTestGroupID+"/posts" && r.Path != "/v1/groups/"+otherGroup+"/posts" {
+			t.Fatal("unexpected feed route")
+		}
 	}
 }
