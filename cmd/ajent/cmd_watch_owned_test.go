@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/channelwatch"
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/channelwatch"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 const ownedTestThread = "019cf010-0000-7000-8000-000000000001"

@@ -6,9 +6,9 @@ import (
 	"context"
 	"flag"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/feedback"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/feedback"
 )
 
 func init() {

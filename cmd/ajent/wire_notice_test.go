@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/update"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/update"
 )
 
 // noticeTestNow is the fixed clock every wire_notice_test.go case measures

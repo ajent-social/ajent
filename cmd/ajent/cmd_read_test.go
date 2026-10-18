@@ -12,10 +12,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // readTestFixturesDir is testdata/contract, relative to this package

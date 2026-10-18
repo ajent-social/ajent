@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // hookWriteProfile saves profile as this project's claude-code profile

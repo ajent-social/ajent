@@ -13,12 +13,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/integrations"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/integrations"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // hookPostUpgradeSetVersion sets version.Version to v for the duration of

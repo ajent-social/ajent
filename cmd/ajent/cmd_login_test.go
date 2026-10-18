@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // loginBrowserCall records one (name, args) pair a stand-in browserCommand

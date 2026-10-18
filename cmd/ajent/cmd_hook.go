@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // sessionStartText is the fixed agent guidance "ajent hook session-start"

@@ -17,9 +17,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/channelwatch"
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/channelwatch"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 func TestWatchCodexFlagsAvailable(t *testing.T) {

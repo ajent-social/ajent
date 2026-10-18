@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
+	"github.com/ajent-social/ajent/internal/cli"
 )
 
 // wire holds the environment-wiring hooks that later tasks append to from

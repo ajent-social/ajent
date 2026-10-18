@@ -16,11 +16,11 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakerelease"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/testutil/fakerelease"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // cmdUpdateTestExeName returns the file name a target executable would
@@ -166,9 +166,9 @@ func cmdUpdateTestBuildBinary(t *testing.T, v string) []byte {
 
 	// #nosec G204 -- "go" and every argument are fixed or test-derived (v is a literal version string this test file passes), never attacker input.
 	cmd := exec.Command("go", "build",
-		"-ldflags", "-X github.com/ajent-social/ajent-client/internal/version.Version="+v,
+		"-ldflags", "-X github.com/ajent-social/ajent/internal/version.Version="+v,
 		"-o", out,
-		"github.com/ajent-social/ajent-client/cmd/ajent",
+		"github.com/ajent-social/ajent/cmd/ajent",
 	)
 	if combined, err := cmd.CombinedOutput(); err != nil {
 		t.Fatalf("building helper binary for version %s: %v\n%s", v, err, combined)

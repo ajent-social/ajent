@@ -8,9 +8,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/gendocs"
-	"github.com/ajent-social/ajent-client/internal/mcp"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/gendocs"
+	"github.com/ajent-social/ajent/internal/mcp"
 )
 
 // gendocsDefaultDir is the output directory runGendocs writes to when no

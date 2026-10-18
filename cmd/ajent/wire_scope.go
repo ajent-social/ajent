@@ -7,10 +7,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/scope"
-	"github.com/ajent-social/ajent-client/internal/setup"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/scope"
+	"github.com/ajent-social/ajent/internal/setup"
 )
 
 // init assigns setup.ConfigureScope, wiring internal/scope (T2.10) into

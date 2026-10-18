@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 func TestProfileFlagsDefaults(t *testing.T) {
