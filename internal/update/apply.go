@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // ErrNoAsset is returned by Apply when r has no archive asset for the

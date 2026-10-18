@@ -8,9 +8,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 func init() {

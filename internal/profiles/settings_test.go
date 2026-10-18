@@ -10,8 +10,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // profilesWriteJSON marshals v as JSON and writes it to path, creating any

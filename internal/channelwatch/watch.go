@@ -18,7 +18,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 const (

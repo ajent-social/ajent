@@ -14,7 +14,7 @@ var releaseKeys = []string{
 	"8TzTBuE6mVB0IT8wuXP47yUs/gei06gDNY4/PeIXEYc=",
 }
 
-// extraKeyB64 is set only with -ldflags "-X github.com/ajent-social/ajent-client/internal/update.extraKeyB64=..."
+// extraKeyB64 is set only with -ldflags "-X github.com/ajent-social/ajent/internal/update.extraKeyB64=..."
 // for tests and release rehearsals. Official release builds never set it.
 var extraKeyB64 string
 

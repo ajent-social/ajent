@@ -18,7 +18,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 // Store is the consent-gated local feedback store rooted at Dir (the ajent

@@ -7,7 +7,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 func TestSessionCredentialNoResolver(t *testing.T) {

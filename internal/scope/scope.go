@@ -22,10 +22,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // Options selects the sharing scope Configure applies.

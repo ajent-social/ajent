@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/channelwatch"
+	"github.com/ajent-social/ajent/internal/channelwatch"
 )
 
 func fixture(t *testing.T, contents string, fromStart bool, limit int) channelwatch.Options {

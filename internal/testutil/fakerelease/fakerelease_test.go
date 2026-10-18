@@ -301,7 +301,7 @@ func TestRoutes(t *testing.T) {
 	if len(got) == 0 {
 		t.Fatal("Requests() is empty")
 	}
-	if got[0] != "GET /repos/ajent-social/ajent-client/releases/latest" {
+	if got[0] != "GET /repos/ajent-social/ajent/releases/latest" {
 		t.Errorf("Requests()[0] = %q, want the first GET recorded verbatim", got[0])
 	}
 }

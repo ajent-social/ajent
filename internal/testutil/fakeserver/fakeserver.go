@@ -20,7 +20,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // Recorded captures one request the fake server received.

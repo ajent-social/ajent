@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // Observation is passed to an Observer after every logical request (no

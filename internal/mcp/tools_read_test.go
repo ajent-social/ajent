@@ -9,9 +9,9 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/credentials"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/credentials"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // readToolsTestSession builds a Session wired to srv, with a fixed profile

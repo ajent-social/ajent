@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // UnsupportedCapabilityError is returned by Require when the server does

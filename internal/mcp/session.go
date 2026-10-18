@@ -6,8 +6,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // Session holds the state Serve needs to answer one MCP connection.

@@ -20,9 +20,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // Options configures Run and Link (docs/interfaces.md, internal/setup).

@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/config"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/config"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // profilesSyncInterval is how long a synced profile stays valid, in this

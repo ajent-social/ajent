@@ -22,7 +22,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/update"
+	"github.com/ajent-social/ajent/internal/update"
 )
 
 // release is one registered fake release.
@@ -62,7 +62,7 @@ func New(t testing.TB) *Server {
 // API returns the fake GitHub Releases API base, matching the shape of
 // update.DefaultGitHubAPI.
 func (s *Server) API() string {
-	return s.URL + "/repos/ajent-social/ajent-client"
+	return s.URL + "/repos/ajent-social/ajent"
 }
 
 // FallbackURL returns the fake pkg.ajent.social latest.json URL, matching
@@ -82,7 +82,7 @@ func (s *Server) AddRelease(version string, prerelease bool, assets map[string][
 
 // SetStatus forces the given HTTP status code for any request whose path
 // ends with path (for example "/releases/latest" or the full
-// "/repos/ajent-social/ajent-client/releases/latest").
+// "/repos/ajent-social/ajent/releases/latest").
 func (s *Server) SetStatus(path string, code int) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -135,11 +135,11 @@ func (s *Server) handle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	switch {
-	case r.Method == http.MethodGet && r.URL.Path == "/repos/ajent-social/ajent-client/releases/latest":
+	case r.Method == http.MethodGet && r.URL.Path == "/repos/ajent-social/ajent/releases/latest":
 		s.serveLatest(w, r)
-	case r.Method == http.MethodGet && r.URL.Path == "/repos/ajent-social/ajent-client/releases":
+	case r.Method == http.MethodGet && r.URL.Path == "/repos/ajent-social/ajent/releases":
 		s.serveList(w, r)
-	case r.Method == http.MethodGet && strings.HasPrefix(r.URL.Path, "/repos/ajent-social/ajent-client/releases/tags/v"):
+	case r.Method == http.MethodGet && strings.HasPrefix(r.URL.Path, "/repos/ajent-social/ajent/releases/tags/v"):
 		s.serveTag(w, r)
 	case r.Method == http.MethodGet && r.URL.Path == "/latest.json":
 		s.serveFallback(w, r)
@@ -198,7 +198,7 @@ func (s *Server) serveList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) serveTag(w http.ResponseWriter, r *http.Request) {
-	tag := strings.TrimPrefix(r.URL.Path, "/repos/ajent-social/ajent-client/releases/tags/")
+	tag := strings.TrimPrefix(r.URL.Path, "/repos/ajent-social/ajent/releases/tags/")
 	version := strings.TrimPrefix(tag, "v")
 
 	s.mu.Lock()

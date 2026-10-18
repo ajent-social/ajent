@@ -11,7 +11,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 func normalizeFixtureNewlines(data []byte) []byte {

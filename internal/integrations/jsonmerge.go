@@ -12,7 +12,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 // ErrUnparseable is returned when the target file is not plain JSON (for

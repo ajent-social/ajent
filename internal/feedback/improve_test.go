@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // TestNoConsentNoSend captures a failure, then reports without ever having

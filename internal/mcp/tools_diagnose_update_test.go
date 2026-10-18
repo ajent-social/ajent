@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
-	"github.com/ajent-social/ajent-client/internal/update"
-	"github.com/ajent-social/ajent-client/internal/version"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/update"
+	"github.com/ajent-social/ajent/internal/version"
 )
 
 // diagnoseUpdateTestSetVersion sets version.Version to v for the duration

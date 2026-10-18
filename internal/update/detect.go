@@ -191,7 +191,7 @@ func UpgradeCommand(m Method) string {
 	case MethodWinget:
 		return "winget upgrade --id AjentSocial.Ajent --exact"
 	case MethodGoInstall:
-		return "go install github.com/ajent-social/ajent-client/cmd/ajent@latest"
+		return "go install github.com/ajent-social/ajent/cmd/ajent@latest"
 	default:
 		return ""
 	}

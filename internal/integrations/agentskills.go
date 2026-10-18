@@ -11,8 +11,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ajent-social/ajent-client"
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 // managedMarker identifies a SKILL.md that ajent installed and may refresh.

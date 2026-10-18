@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/config"
+	"github.com/ajent-social/ajent/internal/config"
 )
 
 // State is the persisted record of ajent's update checks and preferences,

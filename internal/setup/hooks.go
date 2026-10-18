@@ -6,8 +6,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/ajent-social/ajent-client/internal/cli"
-	"github.com/ajent-social/ajent-client/internal/credentials"
+	"github.com/ajent-social/ajent/internal/cli"
+	"github.com/ajent-social/ajent/internal/credentials"
 )
 
 // ConfigureScope writes user or project scope settings. Assigned by T2.13

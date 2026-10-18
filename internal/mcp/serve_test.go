@@ -13,8 +13,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ajent-social/ajent-client/internal/api"
-	"github.com/ajent-social/ajent-client/internal/testutil/fakeserver"
+	"github.com/ajent-social/ajent/internal/api"
+	"github.com/ajent-social/ajent/internal/testutil/fakeserver"
 )
 
 // errPlainServeTest is a plain Go error a test handler returns to prove its
